@@ -1,4 +1,4 @@
 notes
 ====================
 
-Backend for notes app.
+Backend for notes app. Updated.
