@@ -1,7 +1,7 @@
 package models.core;
 
 import models.core.question_answers.ModuleQuestions;
-import utilities.Constants;
+import models.Constants;
 
 import javax.persistence.*;
 import java.io.Serializable;

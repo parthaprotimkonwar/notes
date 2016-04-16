@@ -13,7 +13,7 @@ import controllers.responsedto.UsersResponseDto;
 import models.Person;
 import play.mvc.BodyParser;
 import play.mvc.Result;
-import services.serviceimpl.ServicesFactory;
+import services.service.impl.ServicesFactory;
 
 /**
  * The main set of web services.

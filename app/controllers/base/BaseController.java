@@ -5,8 +5,8 @@ import org.apache.http.HttpStatus;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import controllers.responsedto.ErrorResponse;
-import play.exceptions.BaseException;
-import play.exceptions.ErrorConstants;
+import application.exceptions.BaseException;
+import application.exceptions.ErrorConstants;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;

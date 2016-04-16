@@ -14,6 +14,12 @@ import java.io.Serializable;
 @Embeddable
 public class UserIdChapterId implements Serializable{
 
+    public UserIdChapterId() {}
+    public UserIdChapterId(User user, Chapters chapter) {
+        this.userId = user;
+        this.chapterId = chapter;
+    }
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     private User userId;
@@ -21,4 +27,5 @@ public class UserIdChapterId implements Serializable{
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CHAPTER_ID")
     private Chapters chapterId;
+
 }

@@ -1,44 +1,32 @@
-package models.users;
+package models.bean.users;
 
-import models.payments.UserPayments;
-import models.Constants;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * Created by pkonwar on 4/9/2016.
  */
-@Entity
-@Table(name = "USER", schema = Constants.SCHEMA_NAME_USER)
-public class User implements Serializable{
+public class UserBean implements Serializable{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
+    public UserBean(Long userId) {
+        this.userId = userId;
+    }
+
+    public UserBean(Long userId, String userName, String emailId, String phoneNo, String password, String deviceId) {
+        this.userId = userId;
+        this.userName = userName;
+        this.emailId = emailId;
+        this.phoneNo = phoneNo;
+        this.password = password;
+        this.deviceId = deviceId;
+    }
+
     private Long userId;
-
-    @Column(name = "USER_NAME", length = 30)
     private String userName;
-
-    @Column(name = "EMAIL_ID", length = 30, unique = true, nullable = false)
     private String emailId;
-
-    @Column(name = "PHONE_NO", length = 15)
     private String phoneNo;
-
-    @Column(name = "PASSWORD", nullable = false)
     private String password;
-
-    @Column(name = "DEVICE_ID", length = 100, unique = true, nullable = false)
     private String deviceId;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdChapterId.userId")
-    private Set<UserChapters> userChapters;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdPaymentId.userId")
-    private Set<UserPayments> userPayments;
 
     public Long getUserId() {
         return userId;

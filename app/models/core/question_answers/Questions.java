@@ -1,6 +1,6 @@
 package models.core.question_answers;
 
-import utilities.Constants;
+import models.Constants;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,9 +1,8 @@
 package models.core;
 
 import models.users.UserChapters;
-import utilities.Constants;
+import models.Constants;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -14,6 +13,15 @@ import java.util.Set;
 @Entity
 @Table(name = "CHAPTERS", schema = Constants.SCHEMA_NAME_CORE_MODULES)
 public class Chapters implements Serializable {
+
+    public Chapters() {}
+
+    public Chapters(Float price, String chapterName, Integer indexing, Subjects subjectId) {
+        this.price = price;
+        this.chapterName = chapterName;
+        this.indexing = indexing;
+        this.subjectId = subjectId;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

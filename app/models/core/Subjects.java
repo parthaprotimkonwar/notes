@@ -1,6 +1,6 @@
 package models.core;
 
-import utilities.Constants;
+import models.Constants;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,6 +1,6 @@
 package models.payments;
 
-import utilities.Constants;
+import models.Constants;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;

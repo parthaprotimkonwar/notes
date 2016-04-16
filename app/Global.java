@@ -42,7 +42,7 @@ public class Global extends GlobalSettings {
         ctx.register(SpringDataJpaConfiguration.class);
         
         //provide all packages which need to springized
-        //ctx.scan("controllers.rest", "models", "services.service", "services.serviceimpl");
+        //ctx.scan("controllers.rest", "models", "services.service", "services.service.serviceimpl");
         
         ctx.refresh();
 
@@ -74,7 +74,7 @@ public class Global extends GlobalSettings {
      */
     @Configuration
     @EnableJpaRepositories("repository")
-    @ComponentScan(basePackages = {"controllers", "models", "services.service", "services.serviceimpl"})
+    @ComponentScan(basePackages = {"controllers", "models", "services.service", "services.service.impl"})
     @EnableTransactionManagement
     public static class SpringDataJpaConfiguration {
 
