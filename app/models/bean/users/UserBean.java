@@ -1,5 +1,7 @@
 package models.bean.users;
 
+import application.enums.STATUS;
+
 import java.io.Serializable;
 
 /**
@@ -11,13 +13,14 @@ public class UserBean implements Serializable{
         this.userId = userId;
     }
 
-    public UserBean(Long userId, String userName, String emailId, String phoneNo, String password, String deviceId) {
+    public UserBean(Long userId, String userName, String emailId, String phoneNo, String password, String deviceId, STATUS status) {
         this.userId = userId;
         this.userName = userName;
         this.emailId = emailId;
         this.phoneNo = phoneNo;
         this.password = password;
         this.deviceId = deviceId;
+        this.status = status;
     }
 
     private Long userId;
@@ -26,7 +29,7 @@ public class UserBean implements Serializable{
     private String phoneNo;
     private String password;
     private String deviceId;
-
+    private STATUS status;
 
     public Long getUserId() {
         return userId;
@@ -74,5 +77,13 @@ public class UserBean implements Serializable{
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
+    }
+
+    public STATUS getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
     }
 }

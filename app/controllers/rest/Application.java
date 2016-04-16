@@ -82,7 +82,7 @@ public class Application extends BaseController {
 	    		response.add(aUserResponse);
 	    	}*/
     		
-    		List<Person> persons = servicesFactory.personService.persons();
+            List<Person> persons = servicesFactory.personService.persons();
 	    	
 	    	response = new ArrayList<>();
 	    	for(Person person : persons) {

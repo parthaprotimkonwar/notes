@@ -5,7 +5,6 @@ import application.exceptions.ErrorConstants;
 import models.bean.core.ChaptersBean;
 import models.bean.users.UserBean;
 import models.bean.users.UserChaptersBean;
-import models.bean.users.UserIdChapterIdBean;
 import models.core.Chapters;
 import models.users.User;
 import models.users.UserChapters;

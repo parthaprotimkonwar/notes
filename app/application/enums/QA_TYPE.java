@@ -1,4 +1,4 @@
-package models.core.question_answers;
+package application.enums;
 
 /**
  * Created by pkonwar on 4/9/2016.

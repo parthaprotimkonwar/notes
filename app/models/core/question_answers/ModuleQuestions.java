@@ -1,5 +1,6 @@
 package models.core.question_answers;
 
+import application.enums.QA_TYPE;
 import models.Constants;
 
 import javax.persistence.*;

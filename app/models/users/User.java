@@ -1,7 +1,8 @@
 package models.users;
 
-import models.payments.UserPayments;
 import models.Constants;
+import application.enums.STATUS;
+import models.payments.UserPayments;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +13,19 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "USER", schema = Constants.SCHEMA_NAME_USER)
-public class User implements Serializable{
+public class User implements Serializable {
+
+    public User() {
+    }
+
+    public User(String userName, String emailId, String phoneNo, String password, String deviceId, STATUS status) {
+        this.userName = userName;
+        this.emailId = emailId;
+        this.phoneNo = phoneNo;
+        this.password = password;
+        this.deviceId = deviceId;
+        this.status = status;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +46,10 @@ public class User implements Serializable{
 
     @Column(name = "DEVICE_ID", length = 100, unique = true, nullable = false)
     private String deviceId;
+
+    @Column(name = "STATUS")
+    @Enumerated(value = EnumType.ORDINAL)
+    private STATUS status;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdChapterId.userId")
     private Set<UserChapters> userChapters;
@@ -86,5 +103,13 @@ public class User implements Serializable{
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
+    }
+
+    public STATUS getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
     }
 }
