@@ -13,6 +13,12 @@ import java.util.Set;
 @Table(name = "QUESTIONS", schema = Constants.SCHEMA_NAME_CORE_MODULES_QA)
 public class Questions implements Serializable{
 
+    public Questions() {}
+
+    public Questions(String question) {
+        this.question = question;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "QUESTION_ID")
@@ -22,8 +28,8 @@ public class Questions implements Serializable{
     @Lob
     private String question;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleIdQuestionId.questionId")
-    private Set<ModuleQuestions> moduleQuestions;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleIdQuestionIdAnswerId.questionId")
+    private Set<ModuleQuestionsAnswer> moduleQuestionAnswers;
 
     public Long getQuestionId() {
         return questionId;

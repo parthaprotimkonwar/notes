@@ -11,14 +11,16 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "MODULE_QUESTIONS", schema = Constants.SCHEMA_NAME_CORE_MODULES_QA)
-public class ModuleQuestions implements Serializable{
+public class ModuleQuestionsAnswer implements Serializable{
+
+    public ModuleQuestionsAnswer(ModuleIdQuestionIdAnswerId moduleIdQuestionIdAnswerId, QA_TYPE type, Integer indexing) {
+        this.moduleIdQuestionIdAnswerId = moduleIdQuestionIdAnswerId;
+        this.type = type;
+        this.indexing = indexing;
+    }
 
     @EmbeddedId
-    private ModuleIdQuestionId moduleIdQuestionId;
-
-    @ManyToOne
-    @JoinColumn(name = "ANSWER_ID")
-    private Answers answerId;
+    private ModuleIdQuestionIdAnswerId moduleIdQuestionIdAnswerId;
 
     @Column(name = "TYPE")
     @Enumerated(value = EnumType.ORDINAL)

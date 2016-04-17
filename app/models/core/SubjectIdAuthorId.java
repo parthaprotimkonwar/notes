@@ -12,6 +12,13 @@ import java.io.Serializable;
 @Embeddable
 public class SubjectIdAuthorId implements Serializable{
 
+    public SubjectIdAuthorId() {}
+
+    public SubjectIdAuthorId(Subjects subjects, Authors authors) {
+        this.subjectId = subjects;
+        this.authorId = authors;
+    }
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "SUBJECT_ID")
     private Subjects subjectId;

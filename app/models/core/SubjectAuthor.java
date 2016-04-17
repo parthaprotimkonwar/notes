@@ -13,6 +13,11 @@ import java.io.Serializable;
 @Entity
 @Table(name = "SUBJECT_AUTHOR", schema = Constants.SCHEMA_NAME_CORE_MODULES)
 public class SubjectAuthor implements Serializable{
+    public SubjectAuthor(){}
+
+    public SubjectAuthor(SubjectIdAuthorId subjectIdAuthorId){
+        this.subjectIdAuthorId = subjectIdAuthorId;
+    }
 
     @EmbeddedId
     private SubjectIdAuthorId subjectIdAuthorId;
