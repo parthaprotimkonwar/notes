@@ -5,6 +5,7 @@ import models.Constants;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created by pkonwar on 4/9/2016.
@@ -36,7 +37,7 @@ public class QuestionsAnswer implements Serializable{
     @Enumerated(value = EnumType.ORDINAL)
     private QA_TYPE type;
 
-    /*@Column(name = "INDEXING", unique = true, nullable = false)
-    private Integer indexing;*/
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleIdQuestionsAnswersId.questionsAnswer")
+    private Set<ModuleQuestionsAnswers> moduleQuestionAnswers;
 
 }

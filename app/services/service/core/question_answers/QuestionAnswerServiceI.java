@@ -1,5 +1,7 @@
 package services.service.core.question_answers;
 
+import application.exceptions.BaseException;
+import models.bean.core.question_answers.QuestionsAnswerBean;
 import models.core.question_answers.QuestionsAnswer;
 
 /**
@@ -7,5 +9,5 @@ import models.core.question_answers.QuestionsAnswer;
  */
 public interface QuestionAnswerServiceI {
 
-    QuestionsAnswer addQuestionAnswer(Long questionId, Long answerId);
+    QuestionsAnswer addQuestionAnswer(QuestionsAnswerBean questionsAnswerBean) throws BaseException;
 }
