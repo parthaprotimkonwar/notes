@@ -2,7 +2,7 @@ package models.core;
 
 import application.enums.STATUS;
 import models.Constants;
-import models.core.question_answers.ModuleQuestionsAnswer;
+import models.core.question_answers.QuestionsAnswer;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -43,8 +43,8 @@ public class Modules implements Serializable{
     @Enumerated(value = EnumType.ORDINAL)
     private STATUS status;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleIdQuestionIdAnswerId.moduleId")
-    private Set<ModuleQuestionsAnswer> moduleQuestionAnswers;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleIdQuestionIdAnswerId.moduleId")
+    private Set<QuestionsAnswer> moduleQuestionAnswers;*/
 
     public STATUS getStatus() {
         return status;

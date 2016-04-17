@@ -29,8 +29,8 @@ public class Answers implements Serializable{
     @Lob
     private String answer;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleIdQuestionIdAnswerId.answerId")
-    private Set<ModuleQuestionsAnswer> moduleQuestionAnswers;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "answer")
+    private Set<QuestionsAnswer> moduleQuestionAnswers;
 
     public Long getAnswerId() {
         return answerId;

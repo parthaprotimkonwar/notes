@@ -28,8 +28,8 @@ public class Questions implements Serializable{
     @Lob
     private String question;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleIdQuestionIdAnswerId.questionId")
-    private Set<ModuleQuestionsAnswer> moduleQuestionAnswers;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy ="question")
+    private Set<QuestionsAnswer> moduleQuestionAnswers;
 
     public Long getQuestionId() {
         return questionId;
