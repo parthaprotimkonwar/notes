@@ -10,6 +10,17 @@ import application.exceptions.ErrorConstants;
 public class Util {
 
 	/**
+	 * Check if a string is null/blank/empty
+	 * @param string
+	 * @return
+	 */
+	public static Boolean notNull(String string) {
+		if(string != null && string.trim().length() > 0) {
+			return true;
+		}
+		return false;
+	}
+	/**
 	 * Add milliseconds to the current date.
 	 * @param currentDate
 	 * @param minutesToAdd

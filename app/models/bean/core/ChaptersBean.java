@@ -1,5 +1,6 @@
 package models.bean.core;
 
+import application.enums.STATUS;
 import models.core.Subjects;
 
 import java.io.Serializable;
@@ -10,20 +11,21 @@ import java.io.Serializable;
 public class ChaptersBean implements Serializable {
 
 
-    public ChaptersBean(Long chapterId, Float price, String chapterName, Integer indexing, Subjects subjectId) {
+    public ChaptersBean(Long chapterId, Float price, String chapterName, Integer indexing, Long subjectId, STATUS status) {
         this.chapterId = chapterId;
         this.price = price;
         this.chapterName = chapterName;
         this.indexing = indexing;
         this.subjectId = subjectId;
+        this.status = status;
     }
 
     private Long chapterId;
     private Float price;
     private String chapterName;
     private Integer indexing;
-    private Subjects subjectId;
-
+    private Long subjectId;
+    private STATUS status;
 
     public Long getChapterId() {
         return chapterId;
@@ -57,11 +59,19 @@ public class ChaptersBean implements Serializable {
         this.indexing = indexing;
     }
 
-    public Subjects getSubjectId() {
+    public STATUS getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
+    }
+
+    public Long getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(Subjects subjectId) {
+    public void setSubjectId(Long subjectId) {
         this.subjectId = subjectId;
     }
 }

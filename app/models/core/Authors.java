@@ -15,6 +15,11 @@ public class Authors implements Serializable{
 
     public Authors() {}
 
+    public Authors(String authorName, String authorDescription) {
+        this.authorName = authorName;
+        this.authorDescription = authorDescription;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "AUTHOR_ID")

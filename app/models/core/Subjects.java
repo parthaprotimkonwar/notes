@@ -1,5 +1,6 @@
 package models.core;
 
+import application.enums.STATUS;
 import models.Constants;
 
 import javax.persistence.*;
@@ -15,6 +16,13 @@ public class Subjects implements Serializable {
 
     public Subjects() {}
 
+    public Subjects(String subjectName, Float price, String imageUrl, STATUS status) {
+        this.subjectName = subjectName;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.status = status;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SUBJECT_ID")
@@ -28,6 +36,10 @@ public class Subjects implements Serializable {
 
     @Column(name = "IMAGE_URL", nullable = false)
     private String imageUrl;
+
+    @Column(name = "STATUS")
+    @Enumerated(value = EnumType.ORDINAL)
+    private STATUS status;
 
     @OneToMany(mappedBy = "chapterId")
     private Set<Chapters> chapters;
@@ -81,5 +93,13 @@ public class Subjects implements Serializable {
 
     public void setSubjectAuthor(Set<SubjectAuthor> subjectAuthor) {
         this.subjectAuthor = subjectAuthor;
+    }
+
+    public STATUS getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
     }
 }

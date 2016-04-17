@@ -1,7 +1,8 @@
 package models.core;
 
-import models.users.UserChapters;
+import application.enums.STATUS;
 import models.Constants;
+import models.users.UserChapters;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,11 +17,12 @@ public class Chapters implements Serializable {
 
     public Chapters() {}
 
-    public Chapters(Float price, String chapterName, Integer indexing, Subjects subjectId) {
+    public Chapters(Float price, String chapterName, Integer indexing, Subjects subjectId, STATUS status) {
         this.price = price;
         this.chapterName = chapterName;
         this.indexing = indexing;
         this.subjectId = subjectId;
+        this.status = status;
     }
 
     @Id
@@ -41,10 +43,61 @@ public class Chapters implements Serializable {
     @JoinColumn(name = "SUBJECT_ID")
     private Subjects subjectId;
 
+    @Column(name = "STATUS")
+    @Enumerated(value = EnumType.ORDINAL)
+    private STATUS status;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleId")
     private Set<Modules> modules;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdChapterId.chapterId")
     private Set<UserChapters> userChapters;
 
+    public STATUS getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
+    }
+
+    public Subjects getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Subjects subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public Integer getIndexing() {
+        return indexing;
+    }
+
+    public void setIndexing(Integer indexing) {
+        this.indexing = indexing;
+    }
+
+    public String getChapterName() {
+        return chapterName;
+    }
+
+    public void setChapterName(String chapterName) {
+        this.chapterName = chapterName;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public Long getChapterId() {
+        return chapterId;
+    }
+
+    public void setChapterId(Long chapterId) {
+        this.chapterId = chapterId;
+    }
 }

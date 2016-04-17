@@ -20,6 +20,7 @@ public enum ErrorConstants {
 	DATA_PERSISTANT_EXCEPTION("501", "Unable to Save data"),
 	DATA_FETCH_EXCEPTION("502", "Unable to Fetch data"),
 	DATA_REMOVAL_EXCEPTION("503", "Unable to Delete data"),
+	DATA_UPDATION_EXCEPTION("504", "Unable to Update data"),
 	CONTACT_SYSTEM_ADMINISTRATOR("500", "System Error. Contact system administrator");
 	
 	public String errorCode;
