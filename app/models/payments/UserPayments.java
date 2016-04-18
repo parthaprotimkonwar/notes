@@ -16,4 +16,19 @@ public class UserPayments implements Serializable{
 
     @EmbeddedId
     private UserIdPaymentId userIdPaymentId;
+
+    public UserPayments() {
+    }
+
+    public UserPayments(UserIdPaymentId userIdPaymentId) {
+        this.userIdPaymentId = userIdPaymentId;
+    }
+
+    public UserIdPaymentId getUserIdPaymentId() {
+        return userIdPaymentId;
+    }
+
+    public void setUserIdPaymentId(UserIdPaymentId userIdPaymentId) {
+        this.userIdPaymentId = userIdPaymentId;
+    }
 }

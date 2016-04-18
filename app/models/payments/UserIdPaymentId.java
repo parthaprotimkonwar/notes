@@ -21,4 +21,28 @@ public class UserIdPaymentId implements Serializable{
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "PAYMENT_ID")
     private Payments paymentId;
+
+    public UserIdPaymentId() {
+    }
+
+    public UserIdPaymentId(User userId, Payments paymentId) {
+        this.userId = userId;
+        this.paymentId = paymentId;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
+    public Payments getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(Payments paymentId) {
+        this.paymentId = paymentId;
+    }
 }
