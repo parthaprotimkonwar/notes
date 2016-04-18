@@ -31,6 +31,9 @@ public class Questions implements Serializable{
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="question")
     private Set<QuestionsAnswer> moduleQuestionAnswers;
 
+    @OneToOne(cascade=CascadeType.ALL, mappedBy="question")
+    private QuestionOptions questionOptions;
+
     public Long getQuestionId() {
         return questionId;
     }
