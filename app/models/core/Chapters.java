@@ -2,6 +2,7 @@ package models.core;
 
 import application.enums.STATUS;
 import models.Constants;
+import models.bean.core.ChaptersBean;
 import models.users.UserChapters;
 
 import javax.persistence.*;
@@ -52,6 +53,10 @@ public class Chapters implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdChapterId.chapterId")
     private Set<UserChapters> userChapters;
+
+    public ChaptersBean toChapterBean() {
+        return new ChaptersBean(chapterId, price, chapterName, indexing, subjectId.getSubjectId(), status);
+    }
 
     public STATUS getStatus() {
         return status;

@@ -5,6 +5,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import services.service.PersonServiceI;
+import services.service.core.ChaptersServiceI;
 import services.service.core.SubjectsServiceI;
 
 @Named
@@ -17,5 +18,7 @@ public class ServicesFactory {
 	@Inject
 	public SubjectsServiceI subjectsService;
 
+	@Inject
+	public ChaptersServiceI chaptersServiceI;
 	
 }

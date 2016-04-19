@@ -35,11 +35,11 @@ public interface ChaptersServiceI {
     Chapters findChapter(Long chapterId) throws BaseException;
 
     /**
-     * Find all chapters
+     * Find all chapters for a Subject
      * @return
      * @throws BaseException
      */
-    List<Chapters> findAllChapters() throws BaseException;
+    List<Chapters> findAllChaptersBySubject(long subjectId) throws BaseException;
 
     /**
      * Update a chapter
@@ -48,4 +48,11 @@ public interface ChaptersServiceI {
      * @throws BaseException
      */
     Chapters updateChapter(ChaptersBean chaptersBean) throws BaseException;
+
+    /**
+     * Convert to chapterBean
+     * @param chapters
+     * @return
+     */
+    List<ChaptersBean> convertToChapterBean(List<Chapters> chapters);
 }

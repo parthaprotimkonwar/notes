@@ -8,7 +8,11 @@ GET     /                           @controllers.rest.Application.index
 
 GET		/persons					@controllers.rest.Application.persons
 
+# Find out all available courses
 GET     /courses                    @controllers.rest.CourseController.courses
+
+# Find out all available chapters available for a Course
+GET     /chapters/:subjectId         @controllers.rest.ChapterController.chapters(subjectId: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

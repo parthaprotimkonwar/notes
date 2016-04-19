@@ -14,6 +14,7 @@ import services.service.core.ChaptersServiceI;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -64,9 +65,10 @@ public class ChaptersServiceImpl implements ChaptersServiceI{
     }
 
     @Override
-    public List<Chapters> findAllChapters() throws BaseException {
+    public List<Chapters> findAllChaptersBySubject(long subjectId) throws BaseException {
         try {
-            return chaptersRepository.findAll();
+            Subjects subject = subjectsRepository.findOne(subjectId);
+            return chaptersRepository.findBySubjectId(subject);
         } catch (Exception ex) {
             ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
@@ -92,5 +94,14 @@ public class ChaptersServiceImpl implements ChaptersServiceI{
             ErrorConstants err = ErrorConstants.DATA_UPDATION_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
+    }
+
+    @Override
+    public List<ChaptersBean> convertToChapterBean(List<Chapters> chapters) {
+        List<ChaptersBean> chaptersBeans = new ArrayList<>();
+        for(Chapters chapter : chapters) {
+            chaptersBeans.add(chapter.toChapterBean());
+        }
+        return chaptersBeans;
     }
 }
