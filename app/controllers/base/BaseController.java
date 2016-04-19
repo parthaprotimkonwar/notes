@@ -1,16 +1,14 @@
 package controllers.base;
 
-import org.apache.http.HttpStatus;
-
-import com.fasterxml.jackson.databind.JsonNode;
-
-import controllers.responsedto.ErrorResponse;
 import application.exceptions.BaseException;
 import application.exceptions.ErrorConstants;
+import com.fasterxml.jackson.databind.JsonNode;
+import controllers.responsedto.ErrorResponse;
+import org.apache.http.HttpStatus;
 import play.libs.Json;
 import play.mvc.Controller;
-import play.mvc.Result;
 import play.mvc.Http.RequestBody;
+import play.mvc.Result;
 
 public class BaseController extends Controller{
 

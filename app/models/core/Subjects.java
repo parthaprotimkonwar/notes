@@ -2,6 +2,7 @@ package models.core;
 
 import application.enums.STATUS;
 import models.Constants;
+import models.bean.core.SubjectsBean;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -46,6 +47,10 @@ public class Subjects implements Serializable {
 
     @OneToMany(mappedBy = "subjectIdAuthorId.subjectId")
     private Set<SubjectAuthor> subjectAuthor;
+
+    public SubjectsBean toSubjectBean() {
+        return new SubjectsBean(subjectId, subjectName, price, imageUrl, status);
+    }
 
     public Long getSubjectId() {
         return subjectId;

@@ -13,6 +13,8 @@ import services.service.core.SubjectsServiceI;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pkonwar on 4/17/2016.
@@ -59,6 +61,16 @@ public class SubjectsServiceImpl implements SubjectsServiceI{
     }
 
     @Override
+    public List<Subjects> findAllSubjects() throws BaseException {
+        try {
+            return subjectsRepository.findAll();
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
     public Subjects updateSubject(SubjectsBean subjectsBean) throws BaseException {
         try {
             Subjects subject = subjectsRepository.findOne(subjectsBean.getSubjectId());
@@ -79,5 +91,15 @@ public class SubjectsServiceImpl implements SubjectsServiceI{
             ErrorConstants err = ErrorConstants.DATA_UPDATION_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
+    }
+
+    @Override
+    public List<SubjectsBean> convertToSubjectBean(List<Subjects> subjects) throws BaseException {
+
+        List<SubjectsBean> subjectsBeans = new ArrayList<>();
+        for(Subjects subject : subjects) {
+            subjectsBeans.add(subject.toSubjectBean());
+        }
+        return subjectsBeans;
     }
 }

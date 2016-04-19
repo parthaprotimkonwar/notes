@@ -4,6 +4,8 @@ import application.exceptions.BaseException;
 import models.bean.core.SubjectsBean;
 import models.core.Subjects;
 
+import java.util.List;
+
 /**
  * Created by pkonwar on 4/17/2016.
  */
@@ -33,6 +35,13 @@ public interface SubjectsServiceI {
     Subjects findSubject(Long subjectId) throws BaseException;
 
     /**
+     * Find all available Subjects
+     * @return
+     * @throws BaseException
+     */
+    List<Subjects> findAllSubjects() throws BaseException;
+
+    /**
      * Update a subject
      * @param subjectsBean
      * @return
@@ -40,4 +49,11 @@ public interface SubjectsServiceI {
      */
     Subjects updateSubject(SubjectsBean subjectsBean) throws BaseException;
 
+    /**
+     * Convert to Subject Bean
+     * @param subjects
+     * @return
+     * @throws BaseException
+     */
+    List<SubjectsBean> convertToSubjectBean(List<Subjects> subjects) throws BaseException;
 }

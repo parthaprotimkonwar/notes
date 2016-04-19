@@ -22,6 +22,14 @@ public class SubjectsBean implements Serializable {
         this.status = status;
     }
 
+    public SubjectsBean(Long subjectId, String subjectName, Float price, String imageUrl, STATUS status) {
+        this.subjectId = subjectId;
+        this.subjectName = subjectName;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.status = status;
+    }
+
     private Long subjectId;
     private String subjectName;
     private Float price;
