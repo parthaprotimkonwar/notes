@@ -40,4 +40,35 @@ public class QuestionsAnswer implements Serializable{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleIdQuestionsAnswersId.questionsAnswer")
     private Set<ModuleQuestionsAnswers> moduleQuestionAnswers;
 
+    public Questions getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Questions question) {
+        this.question = question;
+    }
+
+    public Answers getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answers answer) {
+        this.answer = answer;
+    }
+
+    public QA_TYPE getType() {
+        return type;
+    }
+
+    public void setType(QA_TYPE type) {
+        this.type = type;
+    }
+
+    public Long getQuestionAnswerId() {
+        return questionAnswerId;
+    }
+
+    public void setQuestionAnswerId(Long questionAnswerId) {
+        this.questionAnswerId = questionAnswerId;
+    }
 }

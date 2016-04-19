@@ -15,6 +15,13 @@ public interface ModulesServiceI {
 
     Modules deactivateModule(Long moduleId) throws BaseException;
 
+    /**
+     * Updates the STATUS, ModuleName, Indexing.
+     * Need to specify which fields are to be updated.
+     * @param modulesBean
+     * @return
+     * @throws BaseException
+     */
     Modules updateModule(ModulesBean modulesBean) throws BaseException;
 
     Modules findModule(Long moduleId) throws BaseException;

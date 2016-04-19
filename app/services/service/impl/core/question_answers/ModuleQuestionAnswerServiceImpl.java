@@ -15,6 +15,7 @@ import services.service.core.question_answers.ModuleQuestionAnswerServiceI;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.List;
 
 /**
  * Created by pkonwar on 4/17/2016.
@@ -41,6 +42,17 @@ public class ModuleQuestionAnswerServiceImpl implements ModuleQuestionAnswerServ
             return moduleQuestionAnswersRepository.save(moduleQuestionsAnswers);
         } catch (Exception ex) {
             ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
+    public List<ModuleQuestionsAnswers> findQuestionAnswersFromAModule(Long moduleId) throws BaseException {
+        try {
+            Modules module = modulesRepository.findOne(moduleId);
+            return moduleQuestionAnswersRepository.findByModuleIdQuestionsAnswersIdModule(module);
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
     }

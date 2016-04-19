@@ -38,5 +38,4 @@ public class CourseController extends BaseController{
         }
         return convertObjectToJsonResponse(availableSubjectsBeans);
     }
-
 }
