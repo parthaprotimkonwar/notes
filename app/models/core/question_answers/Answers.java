@@ -21,15 +21,16 @@ public class Answers implements Serializable{
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ANSWER_ID")
     private Long answerId;
 
-    @Column(name = "ANSWER", nullable = false)
-    @Lob
+    //@Column(name = "ANSWER", nullable = false)
+    //@Lob
+    @Column(name = "ANSWER", columnDefinition = "text")
     private String answer;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "answer")
+    @OneToMany(mappedBy = "answer", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<QuestionsAnswer> moduleQuestionAnswers;
 
     public Long getAnswerId() {

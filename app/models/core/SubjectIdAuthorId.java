@@ -19,11 +19,11 @@ public class SubjectIdAuthorId implements Serializable{
         this.authorId = authors;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "SUBJECT_ID")
     private Subjects subjectId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "AUTHOR_ID")
     private Authors authorId;
 

@@ -11,8 +11,28 @@ import java.util.List;
  */
 public interface ModulesServiceI {
 
+    /**
+     * Add a module.
+     * @param modulesBean
+     * @return
+     * @throws BaseException
+     */
     Modules addModule(ModulesBean modulesBean) throws BaseException;
 
+    /**
+     * Add a module.
+     * @param modules
+     * @return
+     * @throws BaseException
+     */
+    Modules addModule(Modules modules) throws BaseException;
+
+    /**
+     * De-activate a module
+     * @param moduleId
+     * @return
+     * @throws BaseException
+     */
     Modules deactivateModule(Long moduleId) throws BaseException;
 
     /**
@@ -24,8 +44,20 @@ public interface ModulesServiceI {
      */
     Modules updateModule(ModulesBean modulesBean) throws BaseException;
 
+    /**
+     * Find a Module
+     * @param moduleId
+     * @return
+     * @throws BaseException
+     */
     Modules findModule(Long moduleId) throws BaseException;
 
+    /**
+     * Find all Modules
+     * @TODO : Find all modules for a Chapter
+     * @return
+     * @throws BaseException
+     */
     List<Modules> findAllModules() throws BaseException;
 
 }

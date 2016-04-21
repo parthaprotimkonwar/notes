@@ -13,6 +13,8 @@ import java.io.Serializable;
 @Table(name = "MODULE_QUESTIONS_ANSWERS", schema = Constants.SCHEMA_NAME_CORE_MODULES_QA)
 public class ModuleQuestionsAnswers implements Serializable{
 
+    public ModuleQuestionsAnswers() {}
+
     public ModuleQuestionsAnswers(ModuleIdQuestionsAnswersId moduleIdQuestionsAnswersId, Integer indexing){
         this.moduleIdQuestionsAnswersId = moduleIdQuestionsAnswersId;
         this.indexing = indexing;

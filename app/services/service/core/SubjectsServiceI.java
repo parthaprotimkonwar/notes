@@ -18,7 +18,13 @@ public interface SubjectsServiceI {
      */
     Subjects addSubject(SubjectsBean subjectsBean) throws BaseException;
 
-
+    /**
+     * add a subject/course to the catalog
+     * @param subjects
+     * @return
+     * @throws BaseException
+     */
+    Subjects addSubject(Subjects subjects) throws BaseException;
     /**
      * make a Subject in-active.
      * @param subjectId

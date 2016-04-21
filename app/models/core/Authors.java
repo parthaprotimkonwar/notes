@@ -21,7 +21,7 @@ public class Authors implements Serializable{
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "AUTHOR_ID")
     private Long authorId;
 
@@ -32,7 +32,7 @@ public class Authors implements Serializable{
     @Lob
     private String authorDescription;
 
-    @OneToMany(mappedBy = "subjectIdAuthorId.authorId")
+    @OneToMany(mappedBy = "subjectIdAuthorId.authorId", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<SubjectAuthor> subjectAuthor;
 
     public Long getAuthorId() {

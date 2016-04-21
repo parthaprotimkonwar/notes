@@ -14,6 +14,7 @@ import java.util.Set;
 @Table(name = "QUESTIONS_ANSWERS", schema = Constants.SCHEMA_NAME_CORE_MODULES_QA)
 public class QuestionsAnswer implements Serializable{
 
+    public QuestionsAnswer() {}
     public QuestionsAnswer(Questions question, Answers answer, QA_TYPE type) {
         this.question = question;
         this.answer = answer;
@@ -21,15 +22,15 @@ public class QuestionsAnswer implements Serializable{
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "QUESTION_ANSWER_ID")
     private Long questionAnswerId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "QUESTION_ID")
     private Questions question;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "ANSWER_ID")
     private Answers answer;
 
@@ -37,7 +38,7 @@ public class QuestionsAnswer implements Serializable{
     @Enumerated(value = EnumType.ORDINAL)
     private QA_TYPE type;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleIdQuestionsAnswersId.questionsAnswer")
+    @OneToMany(mappedBy = "moduleIdQuestionsAnswersId.questionsAnswer", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<ModuleQuestionsAnswers> moduleQuestionAnswers;
 
     public Questions getQuestion() {

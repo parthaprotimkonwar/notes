@@ -19,11 +19,11 @@ public class ModuleIdQuestionsAnswersId implements Serializable{
     public ModuleIdQuestionsAnswersId() {
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "QUESTION_ANSWER_ID")
     private QuestionsAnswer questionsAnswer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "MODULE_ID")
     private Modules module;
 

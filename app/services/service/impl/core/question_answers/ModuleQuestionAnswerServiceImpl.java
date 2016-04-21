@@ -47,6 +47,16 @@ public class ModuleQuestionAnswerServiceImpl implements ModuleQuestionAnswerServ
     }
 
     @Override
+    public ModuleQuestionsAnswers addQuestionAnswersToModule(ModuleQuestionsAnswers moduleQuestionsAnswers) throws BaseException {
+        try {
+            return moduleQuestionAnswersRepository.save(moduleQuestionsAnswers);
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
     public List<ModuleQuestionsAnswers> findQuestionAnswersFromAModule(Long moduleId) throws BaseException {
         try {
             Modules module = modulesRepository.findOne(moduleId);

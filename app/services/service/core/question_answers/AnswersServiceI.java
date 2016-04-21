@@ -18,6 +18,14 @@ public interface AnswersServiceI {
     Answers addAnswers(AnswersBean answersBean) throws BaseException;
 
     /**
+     *
+     * @param answers
+     * @return
+     * @throws BaseException
+     */
+    Answers addAnswers(Answers answers) throws BaseException;
+
+    /**
      * Update an Answer
      * @param answersBean
      * @return

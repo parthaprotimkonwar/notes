@@ -17,5 +17,7 @@ GET     /chapters/:subjectId            @controllers.rest.ChapterController.chap
 #Find questions answers for a specific module
 GET     /question/answers/:moduleId     @controllers.rest.QuestionAnswerController.questionAnswers(moduleId: Long)
 
+GET     /bootstrap/db                   @controllers.rest.DatabaseController.insertDataIntoDatabase
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                   controllers.Assets.at(path="/public", file)

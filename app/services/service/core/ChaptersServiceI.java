@@ -19,6 +19,13 @@ public interface ChaptersServiceI {
     Chapters addChapter(ChaptersBean chaptersBean) throws BaseException;
 
     /**
+     * Add a Chapter
+     * @param chapters
+     * @return
+     * @throws BaseException
+     */
+    Chapters addChapter(Chapters chapters) throws BaseException;
+    /**
      * Deactivate a chapter
      * @param chapterId
      * @return

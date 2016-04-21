@@ -43,6 +43,16 @@ public class ChaptersServiceImpl implements ChaptersServiceI{
     }
 
     @Override
+    public Chapters addChapter(Chapters chapters) throws BaseException {
+        try {
+            return chaptersRepository.save(chapters);
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
     public Chapters deactivateChapter(Long chapterId) throws BaseException {
         try {
             Chapters chapter = chaptersRepository.findOne(chapterId);
@@ -68,7 +78,7 @@ public class ChaptersServiceImpl implements ChaptersServiceI{
     public List<Chapters> findAllChaptersBySubject(long subjectId) throws BaseException {
         try {
             Subjects subject = subjectsRepository.findOne(subjectId);
-            return chaptersRepository.findBySubjectId(subject);
+            return chaptersRepository.findBySubject(subject);
         } catch (Exception ex) {
             ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());

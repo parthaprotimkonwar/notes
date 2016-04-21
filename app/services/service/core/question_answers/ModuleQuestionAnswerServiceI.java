@@ -21,6 +21,13 @@ public interface ModuleQuestionAnswerServiceI {
     ModuleQuestionsAnswers addQuestionAnswersToModule(ModuleQuestionsAnswersBean moduleQuestionsAnswersBean) throws BaseException;
 
     /**
+     * @param moduleQuestionsAnswers
+     * @return
+     * @throws BaseException
+     */
+    ModuleQuestionsAnswers addQuestionAnswersToModule(ModuleQuestionsAnswers moduleQuestionsAnswers) throws BaseException;
+
+    /**
      * Find all Questions Answers from a Module
      * @param moduleId
      * @return

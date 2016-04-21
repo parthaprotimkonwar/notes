@@ -25,7 +25,7 @@ public class Subjects implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "SUBJECT_ID")
     private Long subjectId;
 
@@ -42,11 +42,25 @@ public class Subjects implements Serializable {
     @Enumerated(value = EnumType.ORDINAL)
     private STATUS status;
 
-    @OneToMany(mappedBy = "chapterId")
+    @OneToMany(mappedBy = "subject", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<Chapters> chapters;
 
-    @OneToMany(mappedBy = "subjectIdAuthorId.subjectId")
+    @OneToMany(mappedBy = "subjectIdAuthorId.subjectId", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<SubjectAuthor> subjectAuthor;
+
+    @Override
+    public boolean equals(Object thatSubject) {
+        if(thatSubject == null || thatSubject.getClass() != getClass())
+            return false;
+
+        Subjects subjects = (Subjects)thatSubject;
+        return subjects.subjectId.equals(subjectId);
+    }
+
+    @Override
+    public int hashCode() {
+        return subjectId != null ? subjectId.hashCode() : 17;
+    }
 
     public SubjectsBean toSubjectBean() {
         return new SubjectsBean(subjectId, subjectName, price, imageUrl, status);

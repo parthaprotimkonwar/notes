@@ -13,10 +13,11 @@ import java.io.Serializable;
 public class QuestionOptions implements Serializable{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "QUESTION_OPTIONS_ID")
     private Long questionOptionsId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "QUESTION_ID")
     private Questions question;
 

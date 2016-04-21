@@ -20,11 +20,11 @@ public class UserIdChapterId implements Serializable{
         this.chapterId = chapter;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "USER_ID")
     private User userId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "CHAPTER_ID")
     private Chapters chapterId;
 

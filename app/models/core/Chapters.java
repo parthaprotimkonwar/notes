@@ -18,16 +18,16 @@ public class Chapters implements Serializable {
 
     public Chapters() {}
 
-    public Chapters(Float price, String chapterName, Integer indexing, Subjects subjectId, STATUS status) {
+    public Chapters(Float price, String chapterName, Integer indexing, Subjects subject, STATUS status) {
         this.price = price;
         this.chapterName = chapterName;
         this.indexing = indexing;
-        this.subjectId = subjectId;
+        this.subject = subject;
         this.status = status;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "CHAPTER_ID")
     private Long chapterId;
 
@@ -40,22 +40,36 @@ public class Chapters implements Serializable {
     @Column(name = "INDEXING", unique = true, nullable = false)
     private Integer indexing;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "SUBJECT_ID")
-    private Subjects subjectId;
+    private Subjects subject;
 
     @Column(name = "STATUS")
     @Enumerated(value = EnumType.ORDINAL)
     private STATUS status;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleId")
+    @OneToMany(mappedBy = "chapter", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<Modules> modules;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdChapterId.chapterId")
+    @OneToMany(mappedBy = "userIdChapterId.chapterId", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<UserChapters> userChapters;
 
+    @Override
+    public boolean equals(Object thatChapter) {
+        if(thatChapter == null || thatChapter.getClass() != getClass())
+            return false;
+
+        Chapters chapters = (Chapters)thatChapter;
+        return chapters.chapterId.equals(chapterId);
+    }
+
+    @Override
+    public int hashCode() {
+        return chapterId == null ? 17 : chapterId.hashCode();
+    }
+
     public ChaptersBean toChapterBean() {
-        return new ChaptersBean(chapterId, price, chapterName, indexing, subjectId.getSubjectId(), status);
+        return new ChaptersBean(chapterId, price, chapterName, indexing, subject.getSubjectId(), status);
     }
 
     public STATUS getStatus() {
@@ -64,14 +78,6 @@ public class Chapters implements Serializable {
 
     public void setStatus(STATUS status) {
         this.status = status;
-    }
-
-    public Subjects getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(Subjects subjectId) {
-        this.subjectId = subjectId;
     }
 
     public Integer getIndexing() {
@@ -104,5 +110,13 @@ public class Chapters implements Serializable {
 
     public void setChapterId(Long chapterId) {
         this.chapterId = chapterId;
+    }
+
+    public Subjects getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subjects subject) {
+        this.subject = subject;
     }
 }

@@ -3,7 +3,6 @@ package models.core;
 import application.enums.STATUS;
 import models.Constants;
 import models.core.question_answers.ModuleQuestionsAnswers;
-import models.core.question_answers.QuestionsAnswer;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,21 +17,21 @@ public class Modules implements Serializable{
 
     public Modules() {}
 
-    public Modules(Chapters chapterId, String moduleName, Integer indexing, STATUS status) {
-        this.chapterId = chapterId;
+    public Modules(Chapters chapter, String moduleName, Integer indexing, STATUS status) {
+        this.chapter = chapter;
         this.moduleName = moduleName;
         this.indexing = indexing;
         this.status = status;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "MODULE_ID")
     private Long moduleId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "CHAPTER_ID")
-    private Chapters chapterId;
+    private Chapters chapter;
 
     @Column(name = "MODULE_NAME", length = 30)
     private String moduleName;
@@ -44,7 +43,7 @@ public class Modules implements Serializable{
     @Enumerated(value = EnumType.ORDINAL)
     private STATUS status;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moduleIdQuestionsAnswersId.module")
+    @OneToMany(mappedBy = "moduleIdQuestionsAnswersId.module", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<ModuleQuestionsAnswers> moduleQuestionAnswers;
 
     public STATUS getStatus() {
@@ -71,12 +70,12 @@ public class Modules implements Serializable{
         this.moduleName = moduleName;
     }
 
-    public Chapters getChapterId() {
-        return chapterId;
+    public Chapters getChapter() {
+        return chapter;
     }
 
-    public void setChapterId(Chapters chapterId) {
-        this.chapterId = chapterId;
+    public void setChapter(Chapters chapter) {
+        this.chapter = chapter;
     }
 
     public Long getModuleId() {

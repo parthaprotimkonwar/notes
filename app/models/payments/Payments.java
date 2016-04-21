@@ -14,7 +14,7 @@ import java.util.Set;
 public class Payments implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "PAYMENT_ID")
     private Long paymentId;
 
@@ -25,7 +25,7 @@ public class Payments implements Serializable {
     @Lob
     private String paymentGatewayParams;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdPaymentId.paymentId")
+    @OneToMany(mappedBy = "userIdPaymentId.paymentId", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<UserPayments> userPayments;
 
     public Payments() {

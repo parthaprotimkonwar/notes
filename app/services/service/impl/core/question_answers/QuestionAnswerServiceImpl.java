@@ -49,6 +49,16 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerServiceI {
     }
 
     @Override
+    public QuestionsAnswer addQuestionAnswer(QuestionsAnswer questionsAnswer) throws BaseException {
+        try {
+            return questionsAnswerRepository.save(questionsAnswer);
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
     public List<QuestionAnswersResponseDto> generateQuestionAnswers(List<ModuleQuestionsAnswers> moduleQuestionsAnswersList) throws BaseException{
         try {
             List<QuestionAnswersResponseDto> questionAnswersResponseDtoList = new ArrayList<>();

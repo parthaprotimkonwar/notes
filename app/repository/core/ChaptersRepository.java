@@ -13,5 +13,5 @@ import java.util.List;
 @Repository
 public interface ChaptersRepository extends JpaRepository<Chapters, Long> {
 
-    List<Chapters> findBySubjectId(Subjects subjectId);
+    List<Chapters> findBySubject(Subjects subject);
 }

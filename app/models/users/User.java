@@ -28,7 +28,7 @@ public class User implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "USER_ID")
     private Long userId;
 
@@ -51,10 +51,10 @@ public class User implements Serializable {
     @Enumerated(value = EnumType.ORDINAL)
     private STATUS status;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdChapterId.userId")
+    @OneToMany(mappedBy = "userIdChapterId.userId", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<UserChapters> userChapters;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdPaymentId.userId")
+    @OneToMany(mappedBy = "userIdPaymentId.userId", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<UserPayments> userPayments;
 
     public Long getUserId() {

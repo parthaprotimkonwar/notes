@@ -22,6 +22,14 @@ public interface QuestionAnswerServiceI {
     QuestionsAnswer addQuestionAnswer(QuestionsAnswerBean questionsAnswerBean) throws BaseException;
 
     /**
+     *
+     * @param questionsAnswer
+     * @return
+     * @throws BaseException
+     */
+    QuestionsAnswer addQuestionAnswer(QuestionsAnswer questionsAnswer) throws BaseException;
+
+    /**
      * Generate Question Answers in the required format for output.
      * @param moduleQuestionsAnswers
      * @return

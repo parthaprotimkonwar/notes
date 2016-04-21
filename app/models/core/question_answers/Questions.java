@@ -20,18 +20,19 @@ public class Questions implements Serializable{
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "QUESTION_ID")
     private Long questionId;
 
-    @Column(name = "QUESTION", unique = true, nullable = false)
-    @Lob
+    //@Column(name = "QUESTION", unique = true, nullable = false)
+    //@Lob
+    @Column(name = "QUESTION", unique = true, nullable = false, columnDefinition = "text")
     private String question;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy ="question")
+    @OneToMany(mappedBy ="question", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private Set<QuestionsAnswer> moduleQuestionAnswers;
 
-    @OneToOne(cascade=CascadeType.ALL, mappedBy="question")
+    @OneToOne(mappedBy="question", cascade = {CascadeType.MERGE}, orphanRemoval = true)
     private QuestionOptions questionOptions;
 
     public Long getQuestionId() {

@@ -7,6 +7,7 @@ import models.bean.core.SubjectsBean;
 import models.core.Subjects;
 import play.mvc.Result;
 import services.service.impl.ServicesFactory;
+import startup.BootstrapCoreModules;
 
 import javax.inject.Inject;
 import javax.inject.Named;

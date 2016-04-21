@@ -45,6 +45,16 @@ public class ModulesServiceImpl implements ModulesServiceI {
     }
 
     @Override
+    public Modules addModule(Modules modules) throws BaseException {
+        try {
+            return modulesRepository.save(modules);
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
     public Modules deactivateModule(Long moduleId) throws BaseException {
         try {
             Modules module = modulesRepository.findOne(moduleId);

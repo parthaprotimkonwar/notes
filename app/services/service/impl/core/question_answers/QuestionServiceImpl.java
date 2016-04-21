@@ -33,6 +33,16 @@ public class QuestionServiceImpl implements QuestionsServiceI {
     }
 
     @Override
+    public Questions addQuestion(Questions questions) throws BaseException {
+        try {
+            return questionsRepository.save(questions);
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
     public Questions findQuestion(Long questionId) throws BaseException {
         try {
             return questionsRepository.findOne(questionId);

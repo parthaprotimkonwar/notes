@@ -14,11 +14,11 @@ import java.io.Serializable;
 @Embeddable
 public class UserIdPaymentId implements Serializable{
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "USER_ID")
     private User userId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "PAYMENT_ID")
     private Payments paymentId;
 

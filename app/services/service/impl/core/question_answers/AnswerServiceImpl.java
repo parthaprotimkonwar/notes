@@ -34,6 +34,16 @@ public class AnswerServiceImpl implements AnswersServiceI{
     }
 
     @Override
+    public Answers addAnswers(Answers answers) throws BaseException {
+        try {
+            return answersRepository.save(answers);
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
     public Answers updateAnswers(AnswersBean answersBean) throws BaseException {
         try {
             Answers answers = answersRepository.findOne(answersBean.getAnswerId());

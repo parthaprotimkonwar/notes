@@ -39,6 +39,16 @@ public class SubjectsServiceImpl implements SubjectsServiceI{
     }
 
     @Override
+    public Subjects addSubject(Subjects subjects) throws BaseException {
+        try {
+            return subjectsRepository.save(subjects);
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
     public Subjects deactivateSubject(Long subjectId) throws BaseException{
         try {
             Subjects subject = subjectsRepository.findOne(subjectId);
