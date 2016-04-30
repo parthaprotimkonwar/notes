@@ -15,6 +15,11 @@ public class QuestionsBean implements Serializable{
         this.question = question;
     }
 
+    public QuestionsBean(Long questionId, String question) {
+        this.questionId = questionId;
+        this.question = question;
+    }
+
     private Long questionId;
 
     private String question;

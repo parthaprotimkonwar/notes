@@ -10,6 +10,8 @@ import services.service.core.question_answers.QuestionsServiceI;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pkonwar on 4/17/2016.
@@ -53,6 +55,16 @@ public class QuestionServiceImpl implements QuestionsServiceI {
     }
 
     @Override
+    public List<Questions> findAllQuestions() throws BaseException {
+        try {
+            return questionsRepository.findAll();
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
     public Questions updateQuestion(QuestionsBean questionsBean) throws BaseException {
         try {
             Questions questions = questionsRepository.findOne(questionsBean.getQuestionId());
@@ -72,5 +84,14 @@ public class QuestionServiceImpl implements QuestionsServiceI {
             ErrorConstants err = ErrorConstants.DATA_REMOVAL_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
+    }
+
+    @Override
+    public List<QuestionsBean> convertToQuestionsBean(List<Questions> questions) throws BaseException {
+        List<QuestionsBean> questionsBeanList = new ArrayList<>();
+        for(Questions question : questions) {
+            questionsBeanList.add(new QuestionsBean(question.getQuestionId(), question.getQuestion()));
+        }
+        return questionsBeanList;
     }
 }

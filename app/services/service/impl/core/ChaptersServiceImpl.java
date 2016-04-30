@@ -75,6 +75,16 @@ public class ChaptersServiceImpl implements ChaptersServiceI{
     }
 
     @Override
+    public List<Chapters> findAllChapters() throws BaseException {
+        try {
+            return chaptersRepository.findAll();
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
     public List<Chapters> findAllChaptersBySubject(long subjectId) throws BaseException {
         try {
             Subjects subject = subjectsRepository.findOne(subjectId);

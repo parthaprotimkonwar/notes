@@ -1,6 +1,7 @@
 package services.service.impl;
 
 import services.service.PersonServiceI;
+import services.service.core.AuthorsServiceI;
 import services.service.core.ChaptersServiceI;
 import services.service.core.ModulesServiceI;
 import services.service.core.SubjectsServiceI;
@@ -22,6 +23,9 @@ public class ServicesFactory {
 
 	@Inject
 	public SubjectsServiceI subjectsService;
+
+	@Inject
+	public AuthorsServiceI authorsService;
 
 	@Inject
 	public ChaptersServiceI chaptersService;

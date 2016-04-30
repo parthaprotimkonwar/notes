@@ -18,7 +18,8 @@ public class AuthorsBean implements Serializable{
         this.authorId = authorId;
     }
 
-    public AuthorsBean(String authorName, String authorDescription) {
+    public AuthorsBean(Long authorId, String authorName, String authorDescription) {
+        this.authorId = authorId;
         this.authorName = authorName;
         this.authorDescription = authorDescription;
     }

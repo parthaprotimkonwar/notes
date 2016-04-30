@@ -42,6 +42,13 @@ public interface ChaptersServiceI {
     Chapters findChapter(Long chapterId) throws BaseException;
 
     /**
+     * Find all chapters
+     * @return
+     * @throws BaseException
+     */
+    List<Chapters> findAllChapters() throws BaseException;
+
+    /**
      * Find all chapters for a Subject
      * @return
      * @throws BaseException

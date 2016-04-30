@@ -60,4 +60,11 @@ public interface ModulesServiceI {
      */
     List<Modules> findAllModules() throws BaseException;
 
+    /**
+     * Convert to ModulesBean.
+     * @param modulesList
+     * @return
+     * @throws BaseException
+     */
+    List<ModulesBean> convertToModuleBean(List<Modules> modulesList) throws BaseException;
 }

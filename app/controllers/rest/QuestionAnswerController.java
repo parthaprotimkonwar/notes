@@ -4,7 +4,9 @@ import application.exceptions.BaseException;
 import controllers.base.BaseController;
 import controllers.responsedto.ErrorResponse;
 import controllers.responsedto.QuestionAnswersResponseDto;
+import models.bean.core.question_answers.QuestionsBean;
 import models.core.question_answers.ModuleQuestionsAnswers;
+import models.core.question_answers.Questions;
 import play.mvc.Result;
 import services.service.impl.ServicesFactory;
 
@@ -38,5 +40,20 @@ public class QuestionAnswerController extends BaseController {
             return errorObjectToJsonResponse(errorResponse);
         }
         return convertObjectToJsonResponse(questionAnswersResponseDtoList);
+    }
+
+    public Result getQuestions() {
+        List<QuestionsBean> questionResponseBean = null;
+        try {
+            List<Questions> questionsList  = servicesFactory.questionsService.findAllQuestions();
+            questionResponseBean = servicesFactory.questionsService.convertToQuestionsBean(questionsList);
+        } catch (BaseException ex) {
+            ErrorResponse errorResponse = new ErrorResponse(ex.getErrorCode(), ex.getErrorMessage());
+            return errorObjectToJsonResponse(errorResponse);
+        } catch (Exception e) {
+            ErrorResponse errorResponse = unknownErrorResponse();
+            return errorObjectToJsonResponse(errorResponse);
+        }
+        return convertObjectToJsonResponse(questionResponseBean);
     }
 }

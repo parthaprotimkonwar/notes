@@ -41,4 +41,12 @@ public interface AuthorsServiceI {
      * @throws BaseException
      */
     List<Authors> findAllAuthors() throws BaseException;
+
+    /**
+     * Convert to AUTHOR BEAN
+     * @param authorsList
+     * @return
+     * @throws BaseException
+     */
+    List<AuthorsBean> convertToAuthorsBean(List<Authors> authorsList) throws BaseException;
 }

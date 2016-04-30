@@ -15,6 +15,7 @@ import services.service.core.ModulesServiceI;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -105,5 +106,14 @@ public class ModulesServiceImpl implements ModulesServiceI {
             ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
+    }
+
+    @Override
+    public List<ModulesBean> convertToModuleBean(List<Modules> modulesList) throws BaseException {
+        List<ModulesBean> modulesBeanList = new ArrayList<>();
+        for(Modules module : modulesList) {
+            modulesBeanList.add(new ModulesBean(module.getModuleId(), module.getModuleName(), module.getChapter().getChapterId(), module.getIndexing(), module.getStatus()));
+        }
+        return modulesBeanList;
     }
 }

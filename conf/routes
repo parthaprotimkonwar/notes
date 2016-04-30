@@ -11,11 +11,25 @@ GET		/persons					    @controllers.rest.Application.persons
 # Find out all available courses
 GET     /courses                        @controllers.rest.CourseController.courses
 
+#Find out the chapters
+GET     /chapters                       @controllers.rest.ChapterController.chapters
+
 # Find out all available chapters available for a Course
 GET     /chapters/:subjectId            @controllers.rest.ChapterController.chapters(subjectId: Long)
 
+GET     /modules                        @controllers.rest.ModuleController.modules
+
+#Find out the authors
+GET     /authors                        @controllers.rest.AuthorController.authors
+
+#Get the list of SubjectAuthors
+GET     /subjectauthor                  @controllers.rest.SubjectAuthorController.subjectAuthor
+
 #Find questions answers for a specific module
 GET     /question/answers/:moduleId     @controllers.rest.QuestionAnswerController.questionAnswers(moduleId: Long)
+
+#Get all questions. To be removed.
+GET     /questions                       @controllers.rest.QuestionAnswerController.getQuestions
 
 GET     /bootstrap/db                   @controllers.rest.DatabaseController.insertDataIntoDatabase
 

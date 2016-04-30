@@ -13,7 +13,8 @@ public class ModulesBean implements Serializable {
         this.moduleId = moduleId;
     }
 
-    public ModulesBean(String moduleName, Long chapterId, Integer indexing, STATUS status) {
+    public ModulesBean(Long moduleId, String moduleName, Long chapterId, Integer indexing, STATUS status) {
+        this.moduleId = moduleId;
         this.moduleName = moduleName;
         this.chapterId = chapterId;
         this.indexing = indexing;
