@@ -50,4 +50,8 @@ public class Questions implements Serializable{
     public void setQuestion(String question) {
         this.question = question;
     }
+
+    public QuestionOptions getQuestionOptions() {
+        return questionOptions;
+    }
 }

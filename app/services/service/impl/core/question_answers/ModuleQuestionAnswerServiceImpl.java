@@ -15,6 +15,7 @@ import services.service.core.question_answers.ModuleQuestionAnswerServiceI;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,5 +66,14 @@ public class ModuleQuestionAnswerServiceImpl implements ModuleQuestionAnswerServ
             ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
+    }
+
+    @Override
+    public List<ModuleQuestionsAnswersBean> convertToModuleQuestionAnswerBean(List<ModuleQuestionsAnswers> moduleQuestionsAnswersList) throws BaseException {
+        List<ModuleQuestionsAnswersBean> moduleQuestionsAnswersBeanList = new ArrayList<>();
+        for(ModuleQuestionsAnswers moduleQuestionsAnswers : moduleQuestionsAnswersList) {
+            moduleQuestionsAnswersBeanList.add(new ModuleQuestionsAnswersBean(moduleQuestionsAnswers.getModuleIdQuestionsAnswersId().getQuestionsAnswer().getQuestionAnswerId(), moduleQuestionsAnswers.getModuleIdQuestionsAnswersId().getModule().getModuleId(), moduleQuestionsAnswers.getIndexing()));
+        }
+        return moduleQuestionsAnswersBeanList;
     }
 }

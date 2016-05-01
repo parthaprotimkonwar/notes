@@ -4,6 +4,8 @@ import application.exceptions.BaseException;
 import models.bean.core.question_answers.QuestionOptionsBean;
 import models.core.question_answers.QuestionOptions;
 
+import java.util.List;
+
 /**
  * Created by pkonwar on 4/18/2016.
  */
@@ -33,4 +35,11 @@ public interface QuestionOptionsServiceI {
      */
     void deleteQuestionOptions(Long questionOptionsId) throws BaseException;
 
+    /**
+     * Convert to Questins Options Bean
+     * @param questionOptions
+     * @return
+     * @throws BaseException
+     */
+    List<QuestionOptionsBean> convertToQuestionOptions(List<QuestionOptions> questionOptions) throws BaseException;
 }

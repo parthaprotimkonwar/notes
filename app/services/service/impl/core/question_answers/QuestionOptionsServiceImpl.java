@@ -13,6 +13,8 @@ import services.service.core.question_answers.QuestionOptionsServiceI;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pkonwar on 4/18/2016.
@@ -69,5 +71,14 @@ public class QuestionOptionsServiceImpl implements QuestionOptionsServiceI{
             ErrorConstants err = ErrorConstants.DATA_REMOVAL_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
+    }
+
+    @Override
+    public List<QuestionOptionsBean> convertToQuestionOptions(List<QuestionOptions> questionOptionsList) throws BaseException {
+        List<QuestionOptionsBean> questionOptionsBeanList = new ArrayList<>();
+        for(QuestionOptions questionOptions : questionOptionsList) {
+            questionOptionsBeanList.add(new QuestionOptionsBean(questionOptions.getQuestionOptionsId(), questionOptions.getQuestion().getQuestionId(), questionOptions.getOption1(), questionOptions.getOption2(), questionOptions.getOption3(), questionOptions.getOption4(), questionOptions.getAdditionalOptions()));
+        }
+        return questionOptionsBeanList;
     }
 }

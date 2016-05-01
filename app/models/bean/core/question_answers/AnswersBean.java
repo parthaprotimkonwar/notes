@@ -16,6 +16,11 @@ public class AnswersBean implements Serializable{
         this.answer = answer;
     }
 
+    public AnswersBean(Long answerId, String answer) {
+        this.answerId = answerId;
+        this.answer = answer;
+    }
+
     private Long answerId;
 
     private String answer;

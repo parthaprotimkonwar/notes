@@ -3,12 +3,13 @@ package services.service.impl.core.question_answers;
 import application.enums.QA_TYPE;
 import application.exceptions.BaseException;
 import application.exceptions.ErrorConstants;
+import controllers.dto.QuestionAnswerDto;
 import controllers.responsedto.QuestionAnswersResponseDto;
+import models.bean.core.question_answers.AnswersBean;
+import models.bean.core.question_answers.QuestionOptionsBean;
 import models.bean.core.question_answers.QuestionsAnswerBean;
-import models.core.question_answers.Answers;
-import models.core.question_answers.ModuleQuestionsAnswers;
-import models.core.question_answers.Questions;
-import models.core.question_answers.QuestionsAnswer;
+import models.bean.core.question_answers.QuestionsBean;
+import models.core.question_answers.*;
 import repository.core.question_answers.AnswersRepository;
 import repository.core.question_answers.QuestionsAnswerRepository;
 import repository.core.question_answers.QuestionsRepository;
@@ -59,20 +60,40 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerServiceI {
     }
 
     @Override
-    public List<QuestionAnswersResponseDto> generateQuestionAnswers(List<ModuleQuestionsAnswers> moduleQuestionsAnswersList) throws BaseException{
+    public QuestionAnswerDto generateQuestionAnswers(List<ModuleQuestionsAnswers> moduleQuestionsAnswersList) throws BaseException{
         try {
-            List<QuestionAnswersResponseDto> questionAnswersResponseDtoList = new ArrayList<>();
+            QuestionAnswerDto questionAnswerDto = new QuestionAnswerDto();
             for(ModuleQuestionsAnswers moduleQuestionsAnswers : moduleQuestionsAnswersList) {
+
                 QuestionsAnswer questionsAnswer = moduleQuestionsAnswers.getModuleIdQuestionsAnswersId().getQuestionsAnswer();
                 Questions question = questionsAnswer.getQuestion();
                 Answers answers = questionsAnswer.getAnswer();
-                QA_TYPE qaType = questionsAnswer.getType();
-                questionAnswersResponseDtoList.add(new QuestionAnswersResponseDto(question.getQuestion(), answers.getAnswer(), qaType, null));
+                QuestionOptions questionOptions = question.getQuestionOptions();
+
+                //adding QuestionAnswer
+                questionAnswerDto.getQuestionAnswer().add(new QuestionsAnswerBean(questionsAnswer.getQuestionAnswerId(), question.getQuestionId(), answers.getAnswerId(), questionsAnswer.getType()));
+                //adding question
+                questionAnswerDto.getQuestions().add(new QuestionsBean(question.getQuestionId(), question.getQuestion()));
+                //adding answer
+                questionAnswerDto.getAnswers().add(new AnswersBean(answers.getAnswerId(), answers.getAnswer()));
+                //adding questions options
+                questionAnswerDto.getQuestionOptions().add(new QuestionOptionsBean(questionOptions.getQuestionOptionsId(), questionOptions.getQuestion().getQuestionId(), questionOptions.getOption1(), questionOptions.getOption2(), questionOptions.getOption3(), questionOptions.getOption4(), questionOptions.getAdditionalOptions()));
             }
-            return questionAnswersResponseDtoList;
+            return questionAnswerDto;
         } catch (Exception ex) {
             ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
+    }
+
+    @Override
+    public List<QuestionsAnswerBean> convertToQuestionAnswersBean(List<QuestionsAnswer> questionsAnswerList) throws BaseException {
+        List<QuestionsAnswerBean> questionsAnswerBeanList = new ArrayList<>();
+        for(QuestionsAnswer questionsAnswer : questionsAnswerList) {
+            Questions question = questionsAnswer.getQuestion();
+            Answers answers = questionsAnswer.getAnswer();
+            questionsAnswerBeanList.add(new QuestionsAnswerBean(questionsAnswer.getQuestionAnswerId(), question.getQuestionId(), answers.getAnswerId(), questionsAnswer.getType()));
+        }
+        return questionsAnswerBeanList;
     }
 }

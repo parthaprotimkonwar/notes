@@ -22,22 +22,6 @@ public class ChapterController extends BaseController{
     @Inject
     private ServicesFactory servicesFactory;
 
-    public Result chapters() {
-
-        List<ChaptersBean> chaptersBeans = null;
-        try {
-            List<Chapters> chaptersList = servicesFactory.chaptersService.findAllChapters();
-            chaptersBeans = servicesFactory.chaptersService.convertToChapterBean(chaptersList);
-        } catch (BaseException ex) {
-            ErrorResponse errorResponse = new ErrorResponse(ex.getErrorCode(), ex.getErrorMessage());
-            return errorObjectToJsonResponse(errorResponse);
-        } catch (Exception e) {
-            ErrorResponse errorResponse = unknownErrorResponse();
-            return errorObjectToJsonResponse(errorResponse);
-        }
-        return convertObjectToJsonResponse(chaptersBeans);
-    }
-
     public Result chapters(Long subjectId) {
 
         List<ChaptersBean> chaptersBeans = null;

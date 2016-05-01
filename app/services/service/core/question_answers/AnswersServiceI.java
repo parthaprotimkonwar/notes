@@ -4,6 +4,8 @@ import application.exceptions.BaseException;
 import models.bean.core.question_answers.AnswersBean;
 import models.core.question_answers.Answers;
 
+import java.util.List;
+
 /**
  * Created by pkonwar on 4/17/2016.
  */
@@ -47,4 +49,12 @@ public interface AnswersServiceI {
      * @throws BaseException
      */
     void deleteAnswers(Long answerId) throws BaseException;
+
+    /**
+     * Converts to Answer Bean
+     * @param answersList
+     * @return
+     * @throws BaseException
+     */
+    List<AnswersBean> convertToAnswersBean(List<Answers> answersList) throws BaseException;
 }

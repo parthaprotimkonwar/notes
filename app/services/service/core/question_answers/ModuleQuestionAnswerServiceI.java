@@ -34,4 +34,12 @@ public interface ModuleQuestionAnswerServiceI {
      * @throws BaseException
      */
     List<ModuleQuestionsAnswers> findQuestionAnswersFromAModule(Long moduleId) throws BaseException;
+
+    /**
+     * Convert to Module Questions Answer Bean.
+     * @param moduleQuestionsAnswersList
+     * @return
+     * @throws BaseException
+     */
+    List<ModuleQuestionsAnswersBean> convertToModuleQuestionAnswerBean(List<ModuleQuestionsAnswers> moduleQuestionsAnswersList) throws BaseException;
 }

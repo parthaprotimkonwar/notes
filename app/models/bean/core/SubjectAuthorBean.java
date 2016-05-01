@@ -9,17 +9,27 @@ public class SubjectAuthorBean implements Serializable {
 
     public SubjectAuthorBean(){}
 
-    public SubjectAuthorBean(SubjectIdAuthorIdBean subjectIdAuthorIdBean){
-        this.subjectIdAuthorIdBean = subjectIdAuthorIdBean;
+    public SubjectAuthorBean(Long subjectId, Long authorId){
+        this.subjectId = subjectId;
+        this.authorId = authorId;
     }
 
-    private SubjectIdAuthorIdBean subjectIdAuthorIdBean;
+    private Long subjectId;
+    private Long authorId;
 
-    public SubjectIdAuthorIdBean getSubjectIdAuthorIdBean() {
-        return subjectIdAuthorIdBean;
+    public Long getAuthorId() {
+        return authorId;
     }
 
-    public void setSubjectIdAuthorIdBean(SubjectIdAuthorIdBean subjectIdAuthorIdBean) {
-        this.subjectIdAuthorIdBean = subjectIdAuthorIdBean;
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    public Long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
     }
 }

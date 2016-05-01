@@ -1,6 +1,7 @@
 package services.service.core.question_answers;
 
 import application.exceptions.BaseException;
+import controllers.dto.QuestionAnswerDto;
 import controllers.responsedto.QuestionAnswersResponseDto;
 import models.bean.core.question_answers.QuestionsAnswerBean;
 import models.core.question_answers.ModuleQuestionsAnswers;
@@ -34,5 +35,14 @@ public interface QuestionAnswerServiceI {
      * @param moduleQuestionsAnswers
      * @return
      */
-    List<QuestionAnswersResponseDto> generateQuestionAnswers(List<ModuleQuestionsAnswers> moduleQuestionsAnswers) throws BaseException;
+    QuestionAnswerDto generateQuestionAnswers(List<ModuleQuestionsAnswers> moduleQuestionsAnswers) throws BaseException;
+
+
+    /**
+     * Convert to QuestionAnswers Bean.
+     * @param questionsAnswerList
+     * @return
+     * @throws BaseException
+     */
+    List<QuestionsAnswerBean> convertToQuestionAnswersBean(List<QuestionsAnswer> questionsAnswerList) throws BaseException;
 }

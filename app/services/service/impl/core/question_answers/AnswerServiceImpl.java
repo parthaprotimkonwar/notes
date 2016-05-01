@@ -11,6 +11,8 @@ import services.service.core.question_answers.AnswersServiceI;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pkonwar on 4/17/2016.
@@ -73,5 +75,15 @@ public class AnswerServiceImpl implements AnswersServiceI{
             ErrorConstants err = ErrorConstants.DATA_REMOVAL_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
+    }
+
+    @Override
+    public List<AnswersBean> convertToAnswersBean(List<Answers> answersList) throws BaseException {
+        List<AnswersBean> answersBeanList = new ArrayList<>();
+
+        for(Answers answer : answersList) {
+            answersBeanList.add(new AnswersBean(answer.getAnswerId(), answer.getAnswer()));
+        }
+        return answersBeanList;
     }
 }

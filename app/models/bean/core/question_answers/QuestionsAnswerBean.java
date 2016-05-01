@@ -13,7 +13,8 @@ import java.io.Serializable;
  */
 public class QuestionsAnswerBean implements Serializable{
 
-    public QuestionsAnswerBean(Long questionId, Long answerId, QA_TYPE type) {
+    public QuestionsAnswerBean(Long questionAnswerId, Long questionId, Long answerId, QA_TYPE type) {
+        this.questionAnswerId = questionAnswerId;
         this.questionId = questionId;
         this.answerId = answerId;
         this.type = type;
