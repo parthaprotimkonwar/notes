@@ -7,18 +7,24 @@ import models.core.Authors;
 import models.core.SubjectAuthor;
 import models.core.SubjectIdAuthorId;
 import models.core.Subjects;
+import org.springframework.transaction.annotation.Transactional;
 import repository.core.AuthorsRepository;
 import repository.core.SubjectAuthorRepository;
 import repository.core.SubjectsRepository;
 import services.service.core.SubjectAuthorServiceI;
 
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by pkonwar on 4/17/2016.
  */
+@Named
+@Singleton
+@Transactional
 public class SubjectAuthorServiceImpl implements SubjectAuthorServiceI{
 
     @Inject

@@ -71,17 +71,21 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerServiceI {
                 QuestionOptions questionOptions = question.getQuestionOptions();
 
                 //adding QuestionAnswer
-                questionAnswerDto.getQuestionAnswer().add(new QuestionsAnswerBean(questionsAnswer.getQuestionAnswerId(), question.getQuestionId(), answers.getAnswerId(), questionsAnswer.getType()));
+                if(questionsAnswer != null)
+                    questionAnswerDto.getQuestionAnswer().add(new QuestionsAnswerBean(questionsAnswer.getQuestionAnswerId(), question.getQuestionId(), answers.getAnswerId(), questionsAnswer.getType()));
                 //adding question
-                questionAnswerDto.getQuestions().add(new QuestionsBean(question.getQuestionId(), question.getQuestion()));
+                if(question != null)
+                    questionAnswerDto.getQuestions().add(new QuestionsBean(question.getQuestionId(), question.getQuestion()));
                 //adding answer
-                questionAnswerDto.getAnswers().add(new AnswersBean(answers.getAnswerId(), answers.getAnswer()));
+                if(answers != null)
+                    questionAnswerDto.getAnswers().add(new AnswersBean(answers.getAnswerId(), answers.getAnswer()));
                 //adding questions options
-                questionAnswerDto.getQuestionOptions().add(new QuestionOptionsBean(questionOptions.getQuestionOptionsId(), questionOptions.getQuestion().getQuestionId(), questionOptions.getOption1(), questionOptions.getOption2(), questionOptions.getOption3(), questionOptions.getOption4(), questionOptions.getAdditionalOptions()));
+                if(questionOptions != null)
+                    questionAnswerDto.getQuestionOptions().add(new QuestionOptionsBean(questionOptions.getQuestionOptionsId(), questionOptions.getQuestion().getQuestionId(), questionOptions.getOption1(), questionOptions.getOption2(), questionOptions.getOption3(), questionOptions.getOption4(), questionOptions.getAdditionalOptions()));
             }
             return questionAnswerDto;
         } catch (Exception ex) {
-            ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
     }

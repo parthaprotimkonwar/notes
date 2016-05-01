@@ -11,18 +11,18 @@ import java.util.List;
  */
 public class QuestionAnswerDto implements Serializable{
 
-    private List<QuestionsBean> questions;
+    private List<QuestionsBean> questions = new ArrayList<>();
 
-    private List<AnswersBean> answers;
+    private List<AnswersBean> answers = new ArrayList<>();
 
-    private List<QuestionsAnswerBean> questionAnswer;
+    private List<QuestionsAnswerBean> questionAnswer = new ArrayList<>();
 
-    private List<QuestionOptionsBean> questionOptions;
+    private List<QuestionOptionsBean> questionOptions = new ArrayList<>();
 
-    private List<ModuleQuestionsAnswersBean> moduleQuestionAnswer;
+    private List<ModuleQuestionsAnswersBean> moduleQuestionAnswer = new ArrayList<>();
 
     public List<QuestionsBean> getQuestions() {
-        return questions == null ? new ArrayList<>() : questions;
+        return questions;
     }
 
     public void setQuestions(List<QuestionsBean> questions) {
@@ -30,7 +30,7 @@ public class QuestionAnswerDto implements Serializable{
     }
 
     public List<AnswersBean> getAnswers() {
-        return answers == null ? new ArrayList<>() : answers;
+        return answers;
     }
 
     public void setAnswers(List<AnswersBean> answers) {
@@ -38,7 +38,7 @@ public class QuestionAnswerDto implements Serializable{
     }
 
     public List<QuestionsAnswerBean> getQuestionAnswer() {
-        return questionAnswer == null ? new ArrayList<>() : questionAnswer;
+        return questionAnswer;
     }
 
     public void setQuestionAnswer(List<QuestionsAnswerBean> questionAnswer) {
@@ -46,7 +46,7 @@ public class QuestionAnswerDto implements Serializable{
     }
 
     public List<QuestionOptionsBean> getQuestionOptions() {
-        return questionOptions == null ? new ArrayList<>() : questionOptions;
+        return questionOptions;
     }
 
     public void setQuestionOptions(List<QuestionOptionsBean> questionOptions) {
@@ -54,7 +54,7 @@ public class QuestionAnswerDto implements Serializable{
     }
 
     public List<ModuleQuestionsAnswersBean> getModuleQuestionAnswer() {
-        return moduleQuestionAnswer == null ? new ArrayList<>() : moduleQuestionAnswer;
+        return moduleQuestionAnswer;
     }
 
     public void setModuleQuestionAnswer(List<ModuleQuestionsAnswersBean> moduleQuestionAnswer) {
