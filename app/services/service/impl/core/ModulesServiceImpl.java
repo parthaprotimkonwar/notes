@@ -10,7 +10,9 @@ import models.core.Modules;
 import org.springframework.transaction.annotation.Transactional;
 import repository.core.ChaptersRepository;
 import repository.core.ModulesRepository;
+import services.service.core.ChaptersServiceI;
 import services.service.core.ModulesServiceI;
+import services.service.util.Constants;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,6 +35,9 @@ public class ModulesServiceImpl implements ModulesServiceI {
     @Inject
     ChaptersRepository chaptersRepository;
 
+    @Inject
+    ChaptersServiceI chaptersServiceI;
+
     @Override
     public Modules addModule(ModulesBean modulesBean) throws BaseException {
         try {
@@ -48,6 +53,17 @@ public class ModulesServiceImpl implements ModulesServiceI {
     @Override
     public Modules addModule(Modules modules) throws BaseException {
         try {
+            return modulesRepository.save(modules);
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
+    public Modules addDefaultModule(Chapters chapter) throws BaseException {
+        try {
+            Modules modules = new Modules(chapter, Constants.DEFAULT_MODULE_NAME, 1, STATUS.ACTIVE);
             return modulesRepository.save(modules);
         } catch (Exception ex) {
             ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
@@ -92,6 +108,17 @@ public class ModulesServiceImpl implements ModulesServiceI {
     public Modules findModule(Long moduleId) throws BaseException {
         try {
             return modulesRepository.findOne(moduleId);
+        } catch (Exception ex) {
+            ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+    }
+
+    @Override
+    public Modules findDefaultModule(Long chapterId) throws BaseException {
+        try {
+            Chapters chapter = chaptersRepository.findOne(chapterId);
+            return modulesRepository.findByChapterAndModuleName(chapter, Constants.DEFAULT_MODULE_NAME);
         } catch (Exception ex) {
             ErrorConstants err = ErrorConstants.DATA_FETCH_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());

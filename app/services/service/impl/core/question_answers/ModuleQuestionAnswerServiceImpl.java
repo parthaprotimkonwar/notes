@@ -1,15 +1,19 @@
 package services.service.impl.core.question_answers;
 
+import application.enums.QA_TYPE;
 import application.exceptions.BaseException;
 import application.exceptions.ErrorConstants;
+import controllers.requestdto.ModuleQuestionAnswerDto;
 import models.bean.core.question_answers.ModuleQuestionsAnswersBean;
 import models.core.Modules;
-import models.core.question_answers.ModuleIdQuestionsAnswersId;
-import models.core.question_answers.ModuleQuestionsAnswers;
-import models.core.question_answers.QuestionsAnswer;
+import models.core.question_answers.*;
+import org.springframework.transaction.annotation.Transactional;
 import repository.core.ModulesRepository;
+import repository.core.question_answers.AnswersRepository;
 import repository.core.question_answers.ModuleQuestionAnswersRepository;
 import repository.core.question_answers.QuestionsAnswerRepository;
+import repository.core.question_answers.QuestionsRepository;
+import services.service.core.ModulesServiceI;
 import services.service.core.question_answers.ModuleQuestionAnswerServiceI;
 
 import javax.inject.Inject;
@@ -23,6 +27,7 @@ import java.util.List;
  */
 @Named
 @Singleton
+@Transactional
 public class ModuleQuestionAnswerServiceImpl implements ModuleQuestionAnswerServiceI {
 
     @Inject
@@ -31,6 +36,12 @@ public class ModuleQuestionAnswerServiceImpl implements ModuleQuestionAnswerServ
     QuestionsAnswerRepository questionsAnswerRepository;
     @Inject
     ModulesRepository modulesRepository;
+    @Inject
+    QuestionsRepository questionsRepository;
+    @Inject
+    AnswersRepository answersRepository;
+    @Inject
+    ModulesServiceI modulesServiceI;
 
     @Override
     public ModuleQuestionsAnswers addQuestionAnswersToModule(ModuleQuestionsAnswersBean moduleQuestionsAnswersBean) throws BaseException {
@@ -55,6 +66,32 @@ public class ModuleQuestionAnswerServiceImpl implements ModuleQuestionAnswerServ
             ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
+    }
+
+    @Override
+    public ModuleQuestionsAnswers addQuestionAnswersToModule(ModuleQuestionAnswerDto moduleQuestionAnswerDto) throws BaseException {
+        try {
+            //add new question
+            Questions question = new Questions(moduleQuestionAnswerDto.getQuestion());
+            question = questionsRepository.save(question);
+
+            //add new answer
+            Answers answer = new Answers(moduleQuestionAnswerDto.getAnswer());
+            answer = answersRepository.save(answer);
+
+            //add new question answer
+            QuestionsAnswer questionsAnswer = new QuestionsAnswer(question, answer, QA_TYPE.SHORT);
+            questionsAnswerRepository.save(questionsAnswer);
+
+            //link modules and question answers with the default module of the chapter
+            Modules modules = modulesServiceI.findDefaultModule(moduleQuestionAnswerDto.getChapterId());
+            ModuleQuestionsAnswers moduleQuestionsAnswers = new ModuleQuestionsAnswers(new ModuleIdQuestionsAnswersId(questionsAnswer, modules), moduleQuestionAnswerDto.getIndexing());
+            return moduleQuestionAnswersRepository.save(moduleQuestionsAnswers);
+        } catch (Exception ex){
+            ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
+            throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
+        }
+
     }
 
     @Override

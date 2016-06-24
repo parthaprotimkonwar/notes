@@ -25,4 +25,4 @@ GET     /questions                      @controllers.rest.QuestionAnswerControll
 GET     /bootstrap/db                   @controllers.rest.DatabaseController.insertDataIntoDatabase
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file                   controllers.Assets.at(path="/public", file)
+GET     /assets/courses/*file           controllers.Assets.at(path="/public/courses", file)

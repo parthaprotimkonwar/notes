@@ -25,6 +25,7 @@ public interface ChaptersServiceI {
      * @throws BaseException
      */
     Chapters addChapter(Chapters chapters) throws BaseException;
+
     /**
      * Deactivate a chapter
      * @param chapterId

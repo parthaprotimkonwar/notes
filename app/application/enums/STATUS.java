@@ -5,7 +5,17 @@ package application.enums;
  */
 public enum STATUS {
 
-    ACTIVE("ACTIVE"), INACTIVE("INACTIVE");
+    /**
+     * Used for Database Status flags
+     */
+    ACTIVE("ACTIVE"),
+    INACTIVE("INACTIVE"),
+
+    /**
+     * Used for Request Status
+     */
+    SUCCESS("SUCCESS"),
+    FAILURE("FAILURE");
 
     private String status = null;
 

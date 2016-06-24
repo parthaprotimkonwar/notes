@@ -1,9 +1,9 @@
 package services.service.core.question_answers;
 
 import application.exceptions.BaseException;
+import controllers.requestdto.ModuleQuestionAnswerDto;
 import models.bean.core.question_answers.ModuleQuestionsAnswersBean;
 import models.core.question_answers.ModuleQuestionsAnswers;
-import models.core.question_answers.QuestionsAnswer;
 
 import java.util.List;
 
@@ -26,6 +26,13 @@ public interface ModuleQuestionAnswerServiceI {
      * @throws BaseException
      */
     ModuleQuestionsAnswers addQuestionAnswersToModule(ModuleQuestionsAnswers moduleQuestionsAnswers) throws BaseException;
+
+    /**
+     * @param moduleQuestionAnswerDto
+     * @return
+     * @throws BaseException
+     */
+    ModuleQuestionsAnswers addQuestionAnswersToModule(ModuleQuestionAnswerDto moduleQuestionAnswerDto) throws BaseException;
 
     /**
      * Find all Questions Answers from a Module

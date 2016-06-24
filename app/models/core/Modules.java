@@ -17,6 +17,11 @@ public class Modules implements Serializable{
 
     public Modules() {}
 
+    public Modules(Long moduleId, Chapters chapter) {
+        this.moduleId = moduleId;
+        this.chapter = chapter;
+    }
+
     public Modules(Chapters chapter, String moduleName, Integer indexing, STATUS status) {
         this.chapter = chapter;
         this.moduleName = moduleName;

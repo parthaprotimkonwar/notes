@@ -6,6 +6,7 @@ import application.exceptions.ErrorConstants;
 import application.utilities.Util;
 import models.bean.core.ChaptersBean;
 import models.core.Chapters;
+import models.core.Modules;
 import models.core.Subjects;
 import repository.core.ChaptersRepository;
 import repository.core.SubjectsRepository;

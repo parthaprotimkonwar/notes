@@ -2,6 +2,7 @@ package services.service.core;
 
 import application.exceptions.BaseException;
 import models.bean.core.ModulesBean;
+import models.core.Chapters;
 import models.core.Modules;
 
 import java.util.List;
@@ -28,6 +29,14 @@ public interface ModulesServiceI {
     Modules addModule(Modules modules) throws BaseException;
 
     /**
+     * Add a default module
+     * @param chapter
+     * @return
+     * @throws BaseException
+     */
+    Modules addDefaultModule(Chapters chapter) throws BaseException;
+
+    /**
      * De-activate a module
      * @param moduleId
      * @return
@@ -51,6 +60,14 @@ public interface ModulesServiceI {
      * @throws BaseException
      */
     Modules findModule(Long moduleId) throws BaseException;
+
+    /**
+     * Find the default module
+     * @param chapterId
+     * @return
+     * @throws BaseException
+     */
+    Modules findDefaultModule(Long chapterId) throws BaseException;
 
     /**
      * Find all Modules
