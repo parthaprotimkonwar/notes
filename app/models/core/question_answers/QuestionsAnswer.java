@@ -18,7 +18,7 @@ public class QuestionsAnswer implements Serializable{
     public QuestionsAnswer(Questions question, Answers answer, QA_TYPE type) {
         this.question = question;
         this.answer = answer;
-        this.type = type;
+        this.type = (type == null ? QA_TYPE.LONG : type);
     }
 
     @Id

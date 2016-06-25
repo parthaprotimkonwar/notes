@@ -19,9 +19,10 @@ public class Subjects implements Serializable {
 
     public Subjects(String subjectName, Float price, String imageUrl, STATUS status) {
         this.subjectName = subjectName;
-        this.price = price;
-        this.imageUrl = imageUrl;
-        this.status = status;
+        this.price = (price == null ? 0L: price);
+        //@TODO Think about how the image will be stored
+        this.imageUrl = (imageUrl == null ? Constants.DEFAULT_SUBJECT_IMAGE_URL : imageUrl);
+        this.status = (status == null? STATUS.ACTIVE : status);
     }
 
     @Id

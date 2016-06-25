@@ -41,7 +41,7 @@ public class Modules implements Serializable{
     @Column(name = "MODULE_NAME", length = 30)
     private String moduleName;
 
-    @Column(name = "INDEXING", nullable = false, unique = true)
+    @Column(name = "INDEXING", nullable = false)
     private Integer indexing;
 
     @Column(name = "STATUS")

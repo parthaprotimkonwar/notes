@@ -80,18 +80,18 @@ public class ModuleQuestionAnswerServiceImpl implements ModuleQuestionAnswerServ
             answer = answersRepository.save(answer);
 
             //add new question answer
-            QuestionsAnswer questionsAnswer = new QuestionsAnswer(question, answer, QA_TYPE.SHORT);
+            QuestionsAnswer questionsAnswer = new QuestionsAnswer(question, answer, moduleQuestionAnswerDto.getQuestionType());
             questionsAnswerRepository.save(questionsAnswer);
 
             //link modules and question answers with the default module of the chapter
             Modules modules = modulesServiceI.findDefaultModule(moduleQuestionAnswerDto.getChapterId());
+
             ModuleQuestionsAnswers moduleQuestionsAnswers = new ModuleQuestionsAnswers(new ModuleIdQuestionsAnswersId(questionsAnswer, modules), moduleQuestionAnswerDto.getIndexing());
             return moduleQuestionAnswersRepository.save(moduleQuestionsAnswers);
         } catch (Exception ex){
             ErrorConstants err = ErrorConstants.DATA_PERSISTANT_EXCEPTION;
             throw new BaseException(err.errorCode, err.errorMessage, ex.getCause());
         }
-
     }
 
     @Override

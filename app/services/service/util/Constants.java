@@ -5,5 +5,5 @@ package services.service.util;
  */
 public interface Constants {
 
-    String DEFAULT_MODULE_NAME = "default_module";
+    String DEFAULT_MODULE_NAME = "DEFAULT";
 }

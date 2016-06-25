@@ -17,12 +17,12 @@ public class ModuleQuestionsAnswers implements Serializable{
 
     public ModuleQuestionsAnswers(ModuleIdQuestionsAnswersId moduleIdQuestionsAnswersId, Integer indexing){
         this.moduleIdQuestionsAnswersId = moduleIdQuestionsAnswersId;
-        this.indexing = indexing;
+        this.indexing = (indexing==null ? 0 : indexing);
     }
     @EmbeddedId
     private ModuleIdQuestionsAnswersId moduleIdQuestionsAnswersId;
 
-    @Column(name = "INDEXING", unique = true, nullable = false)
+    @Column(name = "INDEXING", nullable = false)
     private Integer indexing;
 
     public ModuleIdQuestionsAnswersId getModuleIdQuestionsAnswersId() {

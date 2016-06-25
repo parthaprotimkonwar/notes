@@ -12,19 +12,20 @@ public class ModuleQuestionAnswerDto implements Serializable {
     public ModuleQuestionAnswerDto() {
     }
 
-    public ModuleQuestionAnswerDto(Long questionAnswerId, Long moduleId, String question, String answer, Integer indexing) {
+    public ModuleQuestionAnswerDto(Long questionAnswerId, Long moduleId, String question, String answer, Integer indexing, Long chapterId) {
         this.questionAnswerId = questionAnswerId;
         this.moduleId = moduleId;
         this.question = question;
         this.answer = answer;
         this.indexing = indexing;
+        this.chapterId = chapterId;
     }
 
 
     private Long questionAnswerId;
     private String question;
     private String answer;
-    private QA_TYPE qquestionType;
+    private QA_TYPE questionType;
     private Long subjectId;
     private Long moduleId;
     private Long chapterId;
@@ -84,5 +85,13 @@ public class ModuleQuestionAnswerDto implements Serializable {
 
     public void setQuestionAnswerId(Long questionAnswerId) {
         this.questionAnswerId = questionAnswerId;
+    }
+
+    public QA_TYPE getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(QA_TYPE questionType) {
+        this.questionType = questionType;
     }
 }

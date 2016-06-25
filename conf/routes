@@ -24,5 +24,20 @@ GET     /questions                      @controllers.rest.QuestionAnswerControll
 
 GET     /bootstrap/db                   @controllers.rest.DatabaseController.insertDataIntoDatabase
 
+
+#Interfaces for Admin Users
+POST    /admin/add/subject               @controllers.rest.AdminUserController.addSubject
+
+POST    /admin/add/chapter               @controllers.rest.AdminUserController.addChapter
+
+POST    /admin/add/qa                    @controllers.rest.AdminUserController.addQuestionAnswers
+
+GET     /admin/get/subjects              @controllers.rest.AdminUserController.getAllSubjects
+
+GET     /admin/get/chapters/:subjectId   @controllers.rest.AdminUserController.getAllChapters(subjectId: Long)
+
+GET     /admin/get/qa/:chapterId         @controllers.rest.AdminUserController.getAllQuestionAnswer(chapterId: Long)
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/courses/*file           controllers.Assets.at(path="/public/courses", file)

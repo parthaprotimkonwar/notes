@@ -47,7 +47,8 @@ public class BaseController extends Controller{
 		JsonNode jsonNode = Json.toJson(object);
 		return ok(jsonNode);
 	}
-	
+
+
 	/**
 	 * Validation error to JSON response.
 	 * @param object

@@ -11,6 +11,8 @@ import java.io.Serializable;
 public class ChaptersBean implements Serializable {
 
 
+    public ChaptersBean(){}
+
     public ChaptersBean(Long chapterId, Float price, String chapterName, Integer indexing, Long subjectId, STATUS status) {
         this.chapterId = chapterId;
         this.price = price;

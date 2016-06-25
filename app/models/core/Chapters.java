@@ -19,11 +19,11 @@ public class Chapters implements Serializable {
     public Chapters() {}
 
     public Chapters(Float price, String chapterName, Integer indexing, Subjects subject, STATUS status) {
-        this.price = price;
+        this.price = (price==null ? 0l:price);
         this.chapterName = chapterName;
-        this.indexing = indexing;
+        this.indexing = (indexing==null ? 0:indexing);
         this.subject = subject;
-        this.status = status;
+        this.status = (status==null ? STATUS.ACTIVE:status);
     }
 
     @Id
@@ -37,7 +37,7 @@ public class Chapters implements Serializable {
     @Column(name = "CHAPTER_NAME", nullable = false, length = 30)
     private String chapterName;
 
-    @Column(name = "INDEXING", unique = true, nullable = false)
+    @Column(name = "INDEXING", nullable = false)
     private Integer indexing;
 
     @ManyToOne(cascade = {CascadeType.MERGE})

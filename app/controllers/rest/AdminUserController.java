@@ -6,6 +6,7 @@ import controllers.base.BaseController;
 import controllers.requestdto.ModuleQuestionAnswerDto;
 import controllers.responsedto.BaseResponseDto;
 import controllers.responsedto.ErrorResponse;
+import controllers.responsedto.GenericResponseContainer;
 import models.bean.core.ChaptersBean;
 import models.bean.core.SubjectsBean;
 import models.core.Chapters;
@@ -47,7 +48,7 @@ public class AdminUserController extends BaseController{
             ErrorResponse errorResponse = unknownErrorResponse();
             return errorObjectToJsonResponse(errorResponse);
         }
-        return convertObjectToJsonResponse(subjectsBean);
+        return convertObjectToJsonResponse(new GenericResponseContainer(STATUS.SUCCESS.name(), subjectsBean));
     }
 
     public Result addChapter(){
@@ -67,16 +68,14 @@ public class AdminUserController extends BaseController{
             ErrorResponse errorResponse = unknownErrorResponse();
             return errorObjectToJsonResponse(errorResponse);
         }
-        return convertObjectToJsonResponse(chaptersBean);
+        return convertObjectToJsonResponse(new GenericResponseContainer(STATUS.SUCCESS.name(), chaptersBean));
     }
 
     public Result addQuestionAnswers() {
 
-        BaseResponseDto responseDto = null;
         try {
             ModuleQuestionAnswerDto moduleQuestionAnswerDto = convertRequestBodyToObject(request().body(), ModuleQuestionAnswerDto.class);
             servicesFactory.moduleQuestionAnswerService.addQuestionAnswersToModule(moduleQuestionAnswerDto);
-            responseDto = new BaseResponseDto("token", STATUS.SUCCESS.name());
         } catch (BaseException ex) {
             ErrorResponse errorResponse = new ErrorResponse(ex.getErrorCode(), ex.getErrorMessage());
             return errorObjectToJsonResponse(errorResponse);
@@ -84,7 +83,7 @@ public class AdminUserController extends BaseController{
             ErrorResponse errorResponse = unknownErrorResponse();
             return errorObjectToJsonResponse(errorResponse);
         }
-        return convertObjectToJsonResponse(responseDto);
+        return convertObjectToJsonResponse(new GenericResponseContainer(STATUS.SUCCESS.name(), null));
     }
 
 
@@ -101,7 +100,7 @@ public class AdminUserController extends BaseController{
             ErrorResponse errorResponse = unknownErrorResponse();
             return errorObjectToJsonResponse(errorResponse);
         }
-        return convertObjectToJsonResponse(subjectsBeanList);
+        return convertObjectToJsonResponse(new GenericResponseContainer(STATUS.SUCCESS.name(), subjectsBeanList));
     }
 
 
@@ -117,7 +116,7 @@ public class AdminUserController extends BaseController{
             ErrorResponse errorResponse = unknownErrorResponse();
             return errorObjectToJsonResponse(errorResponse);
         }
-        return convertObjectToJsonResponse(chaptersBeanList);
+        return convertObjectToJsonResponse(new GenericResponseContainer(STATUS.SUCCESS.name(), chaptersBeanList));
     }
 
     public Result getAllQuestionAnswer(long chapterId) {
@@ -132,12 +131,11 @@ public class AdminUserController extends BaseController{
                 String question = moduleQuestionsAnswers.getModuleIdQuestionsAnswersId().getQuestionsAnswer().getQuestion().getQuestion();
                 String answer = moduleQuestionsAnswers.getModuleIdQuestionsAnswersId().getQuestionsAnswer().getAnswer().getAnswer();
                 Integer indexing = moduleQuestionsAnswers.getIndexing();
-                ModuleQuestionAnswerDto moduleQuestionAnswerDto = new ModuleQuestionAnswerDto(questionAnswerId, modules.getModuleId(), question, answer, indexing);
+                ModuleQuestionAnswerDto moduleQuestionAnswerDto = new ModuleQuestionAnswerDto(questionAnswerId, modules.getModuleId(), question, answer, indexing, chapterId);
 
                 //add question answer to list
                 moduleQuestionAnswerDtoList.add(moduleQuestionAnswerDto);
             }
-
         } catch (BaseException ex) {
             ErrorResponse errorResponse = new ErrorResponse(ex.getErrorCode(), ex.getErrorMessage());
             return errorObjectToJsonResponse(errorResponse);
@@ -145,7 +143,6 @@ public class AdminUserController extends BaseController{
             ErrorResponse errorResponse = unknownErrorResponse();
             return errorObjectToJsonResponse(errorResponse);
         }
-        return convertObjectToJsonResponse(moduleQuestionAnswerDtoList);
-
+        return convertObjectToJsonResponse(new GenericResponseContainer(STATUS.SUCCESS.name(), moduleQuestionAnswerDtoList));
     }
 }
