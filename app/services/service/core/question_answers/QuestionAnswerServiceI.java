@@ -1,8 +1,7 @@
 package services.service.core.question_answers;
 
 import application.exceptions.BaseException;
-import controllers.dto.QuestionAnswerDto;
-import controllers.responsedto.QuestionAnswersResponseDto;
+import rest.dto.QuestionAnswerDto;
 import models.bean.core.question_answers.QuestionsAnswerBean;
 import models.core.question_answers.ModuleQuestionsAnswers;
 import models.core.question_answers.QuestionsAnswer;

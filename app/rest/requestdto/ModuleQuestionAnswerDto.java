@@ -1,4 +1,4 @@
-package controllers.requestdto;
+package rest.requestdto;
 
 import application.enums.QA_TYPE;
 

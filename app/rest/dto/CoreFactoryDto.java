@@ -1,4 +1,4 @@
-package controllers.dto;
+package rest.dto;
 
 import models.bean.core.*;
 

@@ -1,8 +1,8 @@
-package controllers.rest;
+package rest.controllers;
 
 import application.exceptions.BaseException;
-import controllers.base.BaseController;
-import controllers.responsedto.ErrorResponse;
+import rest.base.BaseController;
+import rest.responsedto.ErrorResponse;
 import models.bean.core.ChaptersBean;
 import models.core.Chapters;
 import play.mvc.Result;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Named
 @Singleton
-public class ChapterController extends BaseController{
+public class ChapterController extends BaseController {
 
     @Inject
     private ServicesFactory servicesFactory;

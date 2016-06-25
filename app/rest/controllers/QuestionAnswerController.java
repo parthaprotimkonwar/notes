@@ -1,10 +1,9 @@
-package controllers.rest;
+package rest.controllers;
 
 import application.exceptions.BaseException;
-import controllers.base.BaseController;
-import controllers.dto.QuestionAnswerDto;
-import controllers.responsedto.ErrorResponse;
-import controllers.responsedto.QuestionAnswersResponseDto;
+import rest.base.BaseController;
+import rest.dto.QuestionAnswerDto;
+import rest.responsedto.ErrorResponse;
 import models.bean.core.question_answers.ModuleQuestionsAnswersBean;
 import models.bean.core.question_answers.QuestionsBean;
 import models.core.question_answers.ModuleQuestionsAnswers;

@@ -1,9 +1,9 @@
-package controllers.rest;
+package rest.controllers;
 
 import application.exceptions.BaseException;
-import controllers.base.BaseController;
-import controllers.dto.CoreFactoryDto;
-import controllers.responsedto.ErrorResponse;
+import rest.base.BaseController;
+import rest.dto.CoreFactoryDto;
+import rest.responsedto.ErrorResponse;
 import models.bean.core.*;
 import models.core.*;
 import play.mvc.Result;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Named
 @Singleton
-public class FactoryServicesController extends BaseController{
+public class FactoryServicesController extends BaseController {
 
     @Inject
     ServicesFactory servicesFactory;

@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import controllers.rest.Application;
+import rest.controllers.Application;
 import play.GlobalSettings;
 import play.mvc.Result;
 import play.test.WithApplication;

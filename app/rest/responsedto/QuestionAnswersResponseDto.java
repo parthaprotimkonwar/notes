@@ -1,8 +1,7 @@
-package controllers.responsedto;
+package rest.responsedto;
 
 import application.enums.QA_TYPE;
 
-import javax.swing.text.html.Option;
 import java.io.Serializable;
 
 /**

@@ -1,7 +1,7 @@
-package controllers.rest;
+package rest.controllers;
 
 import application.exceptions.BaseException;
-import controllers.base.BaseController;
+import rest.base.BaseController;
 import play.mvc.Result;
 import startup.BootstrapCoreModules;
 

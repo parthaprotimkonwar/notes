@@ -1,12 +1,11 @@
-package controllers.rest;
+package rest.controllers;
 
 import application.enums.STATUS;
 import application.exceptions.BaseException;
-import controllers.base.BaseController;
-import controllers.requestdto.ModuleQuestionAnswerDto;
-import controllers.responsedto.BaseResponseDto;
-import controllers.responsedto.ErrorResponse;
-import controllers.responsedto.GenericResponseContainer;
+import rest.base.BaseController;
+import rest.requestdto.ModuleQuestionAnswerDto;
+import rest.responsedto.ErrorResponse;
+import rest.responsedto.GenericResponseContainer;
 import models.bean.core.ChaptersBean;
 import models.bean.core.SubjectsBean;
 import models.core.Chapters;

@@ -4,40 +4,53 @@
 
 # Home page - we use the @controllers syntax here so that the router knows we are referring to a class. In turn it
 # will call on the GlobalSettings.getController method to resolve the actual controller instance.
-GET     /                               @controllers.rest.Application.index
+GET     /                               @rest.controllers.Application.index
 
-GET		/persons					    @controllers.rest.Application.persons
+GET		/persons					    @rest.controllers.Application.persons
 
 #FACTORY SERVICES
 
 #Get all data during factory reset or startup
-GET     /factory/courses/data           @controllers.rest.FactoryServicesController.coreFactorySettingsData
+GET     /factory/courses/data           @rest.controllers.FactoryServicesController.coreFactorySettingsData
 
 # Find out all available chapters available for a Course
-GET     /chapters/:subjectId            @controllers.rest.ChapterController.chapters(subjectId: Long)
+GET     /chapters/:subjectId            @rest.controllers.ChapterController.chapters(subjectId: Long)
 
 #Find questions answers for a specific module
-GET     /question/answers/:moduleId     @controllers.rest.QuestionAnswerController.questionAnswers(moduleId: Long)
+GET     /question/answers/:moduleId     @rest.controllers.QuestionAnswerController.questionAnswers(moduleId: Long)
 
 #Get all questions. To be removed.
-GET     /questions                      @controllers.rest.QuestionAnswerController.getQuestions
+GET     /questions                      @rest.controllers.QuestionAnswerController.getQuestions
 
-GET     /bootstrap/db                   @controllers.rest.DatabaseController.insertDataIntoDatabase
+GET     /bootstrap/db                   @rest.controllers.DatabaseController.insertDataIntoDatabase
 
 
 #Interfaces for Admin Users
-POST    /admin/add/subject               @controllers.rest.AdminUserController.addSubject
+POST    /admin/add/subject               @rest.controllers.AdminUserController.addSubject
 
-POST    /admin/add/chapter               @controllers.rest.AdminUserController.addChapter
+POST    /admin/add/chapter               @rest.controllers.AdminUserController.addChapter
 
-POST    /admin/add/qa                    @controllers.rest.AdminUserController.addQuestionAnswers
+POST    /admin/add/qa                    @rest.controllers.AdminUserController.addQuestionAnswers
 
-GET     /admin/get/subjects              @controllers.rest.AdminUserController.getAllSubjects
+GET     /admin/get/subjects              @rest.controllers.AdminUserController.getAllSubjects
 
-GET     /admin/get/chapters/:subjectId   @controllers.rest.AdminUserController.getAllChapters(subjectId: Long)
+GET     /admin/get/chapters/:subjectId   @rest.controllers.AdminUserController.getAllChapters(subjectId: Long)
 
-GET     /admin/get/qa/:chapterId         @controllers.rest.AdminUserController.getAllQuestionAnswer(chapterId: Long)
+GET     /admin/get/qa/:chapterId         @rest.controllers.AdminUserController.getAllQuestionAnswer(chapterId: Long)
 
+
+#Options for CORS Filter
+OPTIONS /admin/add/subject               @rest.controllers.CORSAllowController.enablecors
+
+OPTIONS /admin/add/chapter               @rest.controllers.CORSAllowController.enablecors
+
+OPTIONS /admin/add/qa                    @rest.controllers.CORSAllowController.enablecors
+
+OPTIONS /admin/get/subjects              @rest.controllers.CORSAllowController.enablecors
+
+OPTIONS /admin/get/chapters/:subjectId   @rest.controllers.CORSAllowController.enablecors
+
+OPTIONS /admin/get/qa/:chapterId         @rest.controllers.CORSAllowController.enablecors
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/courses/*file           controllers.Assets.at(path="/public/courses", file)

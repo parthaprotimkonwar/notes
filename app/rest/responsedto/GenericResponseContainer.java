@@ -1,4 +1,4 @@
-package controllers.responsedto;
+package rest.responsedto;
 
 import java.io.Serializable;
 

@@ -1,10 +1,8 @@
 package services.service.impl.core.question_answers;
 
-import application.enums.QA_TYPE;
 import application.exceptions.BaseException;
 import application.exceptions.ErrorConstants;
-import controllers.dto.QuestionAnswerDto;
-import controllers.responsedto.QuestionAnswersResponseDto;
+import rest.dto.QuestionAnswerDto;
 import models.bean.core.question_answers.AnswersBean;
 import models.bean.core.question_answers.QuestionOptionsBean;
 import models.bean.core.question_answers.QuestionsAnswerBean;
