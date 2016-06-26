@@ -48,9 +48,9 @@ OPTIONS /admin/add/qa                    @rest.controllers.CORSAllowController.e
 
 OPTIONS /admin/get/subjects              @rest.controllers.CORSAllowController.enablecors
 
-OPTIONS /admin/get/chapters/:subjectId   @rest.controllers.CORSAllowController.enablecors
+OPTIONS /admin/get/chapters           @rest.controllers.CORSAllowController.enablecors
 
-OPTIONS /admin/get/qa/:chapterId         @rest.controllers.CORSAllowController.enablecors
+OPTIONS /admin/get/qa                 @rest.controllers.CORSAllowController.enablecors
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/courses/*file           controllers.Assets.at(path="/public/courses", file)

@@ -8,5 +8,5 @@ public interface Constants {
 	String SCHEMA_NAME_PAYMENTS = "PAYMENTS";
 
 	//Default Names
-	String DEFAULT_SUBJECT_IMAGE_URL = "images/default.jpg";
+	String DEFAULT_SUBJECT_IMAGE_URL = "courses/default.jpg";
 }

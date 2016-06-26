@@ -45,11 +45,19 @@ public class BaseController extends Controller{
 	 */
 	public Result convertObjectToJsonResponse(Object object){
 		JsonNode jsonNode = Json.toJson(object);
-		response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
+		addCORSHeader();
 		return ok(jsonNode);
 	}
 
-
+	/**
+	 * Add CORS Header
+	 */
+	public void addCORSHeader() {
+		String origin = request().getHeader("Origin");
+		System.out.println("Origin : " +origin);
+		if(origin != null)
+			response().setHeader("Access-Control-Allow-Origin", origin);
+	}
 	/**
 	 * Validation error to JSON response.
 	 * @param object
@@ -90,6 +98,7 @@ public class BaseController extends Controller{
 				httpErrorCode = HttpStatus.SC_BAD_REQUEST;
 				break;
 		}
+		addCORSHeader();
 		return errorObjectToJsonResponse(httpErrorCode, errorResponse);
 	}
 	
@@ -101,6 +110,7 @@ public class BaseController extends Controller{
 	 */
 	public Result errorObjectToJsonResponse(int httpErrorCode, ErrorResponse errorResponse){
 		JsonNode jsonNode = Json.toJson(errorResponse);
+		addCORSHeader();
 		return status(httpErrorCode, jsonNode);
 	}
 }
